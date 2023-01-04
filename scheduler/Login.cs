@@ -32,11 +32,10 @@ namespace scheduler
         }
 
         /*
-          Moveable Window Functionality
           Enables window click-and-drag functionality without a title bar
         */
         //-----------------------------------------------------------------------
-        //Fields
+        //Variables
         private bool mouseDown;
         private Point lastLocation;
 
