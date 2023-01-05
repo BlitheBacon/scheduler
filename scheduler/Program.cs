@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,6 +25,8 @@ namespace scheduler
 
             //The login form for authentication.
             Application.Run(new Login());
+
+            Thread.CurrentThread.CurrentUICulture = System.Globalization.CultureInfo.CreateSpecificCulture("de");
 
             //Main window hidden until authentication is confirmed.
 

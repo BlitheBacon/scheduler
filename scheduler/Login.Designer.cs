@@ -46,16 +46,16 @@
             // 
             // tb_Username
             // 
+            resources.ApplyResources(this.tb_Username, "tb_Username");
             this.tb_Username.BackColor = System.Drawing.Color.White;
             this.tb_Username.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.tb_Username, "tb_Username");
             this.tb_Username.Name = "tb_Username";
             // 
             // tb_Password
             // 
+            resources.ApplyResources(this.tb_Password, "tb_Password");
             this.tb_Password.BackColor = System.Drawing.Color.White;
             this.tb_Password.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            resources.ApplyResources(this.tb_Password, "tb_Password");
             this.tb_Password.Name = "tb_Password";
             this.tb_Password.UseSystemPasswordChar = true;
             // 
@@ -66,17 +66,17 @@
             // 
             // btn_Submit
             // 
-            this.btn_Submit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(114)))), ((int)(((byte)(64)))));
             resources.ApplyResources(this.btn_Submit, "btn_Submit");
+            this.btn_Submit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(114)))), ((int)(((byte)(64)))));
             this.btn_Submit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.UseVisualStyleBackColor = false;
             // 
             // btn_Close
             // 
+            resources.ApplyResources(this.btn_Close, "btn_Close");
             this.btn_Close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            resources.ApplyResources(this.btn_Close, "btn_Close");
             this.btn_Close.ForeColor = System.Drawing.Color.Black;
             this.btn_Close.Name = "btn_Close";
             this.btn_Close.TabStop = false;
