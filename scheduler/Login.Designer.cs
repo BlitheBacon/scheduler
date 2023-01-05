@@ -71,6 +71,7 @@
             this.btn_Submit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.UseVisualStyleBackColor = false;
+            this.btn_Submit.Click += new System.EventHandler(this.btn_Submit_Click);
             // 
             // btn_Close
             // 

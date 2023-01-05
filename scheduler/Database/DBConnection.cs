@@ -12,14 +12,13 @@ namespace scheduler.Database
     public class DBConnection
     {
         public static MySqlConnection conn { get; set; }
+        public static string connStr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
 
         public static void startConnection()
         {
             try
             {
                 //Initialize and open the connection.
-                string connStr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
-
                 conn = new MySqlConnection(connStr);
                 conn.Open();
 

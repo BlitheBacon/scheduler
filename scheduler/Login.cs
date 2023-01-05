@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using scheduler.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,6 +47,31 @@ namespace scheduler
             //Buttons
             btn_Submit.Text = rm.GetString("Submit", culture);
         }
+        private void btn_Submit_Click(object sender, EventArgs e)
+        {
+            if (tb_Username.Text == "" ||
+                tb_Password.Text == "")
+            {
+                MessageBox.Show("Please enter a username and password.");
+            }
+            else
+            {
+                bool result = Authentication.Login.AuthenticateUser(
+                    tb_Username.Text.Trim(),
+                    tb_Password.Text.Trim());
+
+                if (result)
+                {
+                    MessageBox.Show("Login Successful!");
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Login failed.");
+                    lbl_ErrorText.Show();
+                }
+            }
+        }
 
         private void btn_Close_Click(object sender, EventArgs e)
         {
@@ -80,7 +106,7 @@ namespace scheduler
         {
             mouseDown = false;
         }
-        //-----------------------------------------------------------------------
 
+        //-----------------------------------------------------------------------
     }
 }
