@@ -117,16 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Password" xml:space="preserve">
-    <value>Contraseña</value>
-  </data>
-  <data name="Submit" xml:space="preserve">
-    <value>Entregar</value>
-  </data>
-  <data name="Username" xml:space="preserve">
-    <value>Nombre de Usuario</value>
-  </data>
-  <data name="WindowTitle" xml:space="preserve">
-    <value>Iniciar Sesión</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="lbl_Window.Location" type="System.Drawing.Point, System.Drawing">
+    <value>141, 71</value>
   </data>
 </root>

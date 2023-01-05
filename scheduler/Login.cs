@@ -22,7 +22,6 @@ namespace scheduler
         
         public Login()
         {
-
             InitializeComponent();
 
             //Form Component Adjustments
@@ -36,8 +35,11 @@ namespace scheduler
         private void Login_Load(object sender, EventArgs e)
         {
             //Localization
+            culture = CultureInfo.CurrentCulture;
+
             //Labels
             lbl_Window.Text = rm.GetString("WindowTitle", culture);
+            lbl_Window.Left = (this.ClientSize.Width - lbl_Window.Size.Width) / 2; //Maintains centered label position
             lbl_Username.Text = rm.GetString("Username", culture);
             lbl_Password.Text = rm.GetString("Password", culture);
 
