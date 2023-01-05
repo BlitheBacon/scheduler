@@ -1,16 +1,7 @@
-﻿using MySql.Data.MySqlClient;
-using scheduler.Database;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Resources;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace scheduler
@@ -19,40 +10,38 @@ namespace scheduler
     {
         //Localization Variables
         ResourceManager rm = new ResourceManager("scheduler.Resources.Login.Strings", typeof(Login).Assembly);
-        CultureInfo culture = CultureInfo.CurrentCulture;
+        CultureInfo culture = CultureInfo.CreateSpecificCulture("de");
         
         public Login()
         {
             InitializeComponent();
 
             //Form Component Adjustments
-            //Buttons
+            //Button Adjustments and Localization
             btn_Submit.FlatAppearance.BorderColor = Color.FromArgb(225, 114, 64);
-
+            btn_Submit.Text = rm.GetString("Submit", culture);
+            
             btn_Close.FlatAppearance.BorderSize = 0;
             btn_Close.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //Transparent Border
-        }
 
-        private void Login_Load(object sender, EventArgs e)
-        {
-            //Localization
-            culture = CultureInfo.CurrentCulture;
-
-            //Labels
-            lbl_Window.Text = rm.GetString("WindowTitle", culture);
+            //Label Adjustments and Localization
             lbl_Window.Left = (this.ClientSize.Width - lbl_Window.Size.Width) / 2; //Maintains centered label position
+            lbl_Window.Text = rm.GetString("WindowTitle", culture);
+
+            lbl_ErrorText.Text = rm.GetString("ErrLoginFail", culture);
+            lbl_ErrorText.Left = (this.ClientSize.Width - lbl_ErrorText.Size.Width) / 2; //Maintains centered label position
+
             lbl_Username.Text = rm.GetString("Username", culture);
             lbl_Password.Text = rm.GetString("Password", culture);
-
-            //Buttons
-            btn_Submit.Text = rm.GetString("Submit", culture);
         }
+
+
         private void btn_Submit_Click(object sender, EventArgs e)
         {
             if (tb_Username.Text == "" ||
                 tb_Password.Text == "")
             {
-                MessageBox.Show("Please enter a username and password.");
+                MessageBox.Show(rm.GetString("ErrEnterCredentials", culture));
             }
             else
             {
@@ -62,20 +51,14 @@ namespace scheduler
 
                 if (result)
                 {
-                    MessageBox.Show("Login Successful!");
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Login failed.");
+                    
                     lbl_ErrorText.Show();
                 }
             }
-        }
-
-        private void btn_Close_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         /*
@@ -108,5 +91,15 @@ namespace scheduler
         }
 
         //-----------------------------------------------------------------------
+        
+        private void btn_Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        
+        private void Login_Load(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

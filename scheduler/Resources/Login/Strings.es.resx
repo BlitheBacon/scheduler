@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ErrEnterCredentials" xml:space="preserve">
+    <value>Por favor ingrese un nombre de usuario y contraseña.</value>
+  </data>
+  <data name="ErrLoginFail" xml:space="preserve">
+    <value>Usuario o contraseña incorrectos.</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Contraseña</value>
   </data>

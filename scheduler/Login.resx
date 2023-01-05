@@ -216,7 +216,7 @@
     <value>Microsoft Sans Serif, 9.75pt</value>
   </data>
   <data name="lbl_ErrorText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>95, 138</value>
+    <value>139, 136</value>
   </data>
   <data name="lbl_ErrorText.Size" type="System.Drawing.Size, System.Drawing">
     <value>91, 16</value>

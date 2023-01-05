@@ -61,6 +61,24 @@ namespace scheduler.Resources.Login {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a username and password..
+        /// </summary>
+        internal static string ErrEnterCredentials {
+            get {
+                return ResourceManager.GetString("ErrEnterCredentials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username or password incorrect..
+        /// </summary>
+        internal static string ErrLoginFail {
+            get {
+                return ResourceManager.GetString("ErrLoginFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         internal static string Password {
