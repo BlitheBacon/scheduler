@@ -1,4 +1,5 @@
 ﻿using scheduler.Database;
+using scheduler.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,12 @@ namespace scheduler
             DBConnection.startConnection();
 
             //The login form for authentication.
-            Application.Run(new Login());
+            var formLogin = new Login();
+            formLogin.ShowDialog();
+
+            //Start the main application
+            Application.Run(new Main());
+
 
             //Database connection is severed after the application is closed.
             DBConnection.closeConnection();
