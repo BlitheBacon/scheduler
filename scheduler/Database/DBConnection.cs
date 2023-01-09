@@ -7,6 +7,8 @@ namespace scheduler.Database
     public class DBConnection
     {
         public static MySqlConnection conn { get; set; }
+
+        //Found within the 'App.config' file.
         public static string connStr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
 
         public static void startConnection()
