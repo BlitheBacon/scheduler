@@ -1,4 +1,5 @@
-﻿using System;
+﻿using scheduler.Authentication;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,8 +17,9 @@ namespace scheduler.Forms
         {
             InitializeComponent();
 
-            //Form Clock
-            
+            //Labels
+            lbl_LoggedInUser.Text = ActiveUserInformation.activeUser.UserName;
+            lbl_userID.Text = ActiveUserInformation.activeUser.UserID.ToString();
 
             //Form Component Adjustments
             //Button Adjustments and Localization
@@ -68,7 +70,7 @@ namespace scheduler.Forms
         private void timer_DateTimeLabel_Tick(object sender, EventArgs e)
         {
             lbl_TimeLocal.Text = DateTime.Now.ToString("HH:mm:ss");
-            lbl_DateLocal.Text = DateTime.Now.ToString("dddd | MM-dd-yyyy");
+            lbl_DateLocal.Text = DateTime.Now.ToString("dddd | MM-dd-yyyy |");
         }
 
         //-----------------------------------------------------------------------

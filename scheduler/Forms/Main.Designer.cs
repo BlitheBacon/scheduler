@@ -43,36 +43,38 @@
             this.lbl_TimeLocal = new System.Windows.Forms.Label();
             this.timer_DateTimeLabel = new System.Windows.Forms.Timer(this.components);
             this.lbl_DateLocal = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnl_Footer = new System.Windows.Forms.Panel();
+            this.lbl_userID = new System.Windows.Forms.Label();
             this.flpMain.SuspendLayout();
             this.pnl_Tabs.SuspendLayout();
             this.pnl_WindowButtons.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.pnl_Footer.SuspendLayout();
             this.SuspendLayout();
             // 
             // flpMain
             // 
             this.flpMain.Controls.Add(this.pnl_Tabs);
             this.flpMain.Controls.Add(this.tabControl_Main);
-            this.flpMain.Controls.Add(this.panel1);
+            this.flpMain.Controls.Add(this.pnl_Footer);
             this.flpMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flpMain.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpMain.Location = new System.Drawing.Point(0, 0);
             this.flpMain.Name = "flpMain";
-            this.flpMain.Size = new System.Drawing.Size(1200, 680);
+            this.flpMain.Size = new System.Drawing.Size(1600, 900);
             this.flpMain.TabIndex = 0;
             // 
             // pnl_Tabs
             // 
             this.pnl_Tabs.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnl_Tabs.BackColor = System.Drawing.Color.Transparent;
+            this.pnl_Tabs.Controls.Add(this.lbl_userID);
             this.pnl_Tabs.Controls.Add(this.lbl_LoggedInUser);
             this.pnl_Tabs.Controls.Add(this.pnl_WindowButtons);
             this.pnl_Tabs.Location = new System.Drawing.Point(0, 0);
             this.pnl_Tabs.Margin = new System.Windows.Forms.Padding(0);
             this.pnl_Tabs.Name = "pnl_Tabs";
-            this.pnl_Tabs.Size = new System.Drawing.Size(1200, 44);
+            this.pnl_Tabs.Size = new System.Drawing.Size(1600, 77);
             this.pnl_Tabs.TabIndex = 1;
             this.pnl_Tabs.DoubleClick += new System.EventHandler(this.btn_MaximizeClick);
             this.pnl_Tabs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_Event_MouseDown);
@@ -83,7 +85,7 @@
             // 
             this.lbl_LoggedInUser.AutoSize = true;
             this.lbl_LoggedInUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_LoggedInUser.Location = new System.Drawing.Point(12, 9);
+            this.lbl_LoggedInUser.Location = new System.Drawing.Point(8, 9);
             this.lbl_LoggedInUser.Name = "lbl_LoggedInUser";
             this.lbl_LoggedInUser.Size = new System.Drawing.Size(146, 25);
             this.lbl_LoggedInUser.TabIndex = 4;
@@ -96,9 +98,9 @@
             this.pnl_WindowButtons.Controls.Add(this.btn_Maximize);
             this.pnl_WindowButtons.Controls.Add(this.btn_Minimize);
             this.pnl_WindowButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_WindowButtons.Location = new System.Drawing.Point(1095, 0);
+            this.pnl_WindowButtons.Location = new System.Drawing.Point(1495, 0);
             this.pnl_WindowButtons.Name = "pnl_WindowButtons";
-            this.pnl_WindowButtons.Size = new System.Drawing.Size(105, 44);
+            this.pnl_WindowButtons.Size = new System.Drawing.Size(105, 77);
             this.pnl_WindowButtons.TabIndex = 3;
             // 
             // btn_Close
@@ -143,15 +145,16 @@
             // 
             // tabControl_Main
             // 
+            this.tabControl_Main.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.tabControl_Main.Controls.Add(this.tab_Home);
             this.tabControl_Main.Controls.Add(this.tab_Schedule);
             this.tabControl_Main.Controls.Add(this.tab_Reports);
             this.tabControl_Main.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl_Main.HotTrack = true;
-            this.tabControl_Main.Location = new System.Drawing.Point(3, 47);
+            this.tabControl_Main.Location = new System.Drawing.Point(8, 80);
             this.tabControl_Main.Name = "tabControl_Main";
             this.tabControl_Main.SelectedIndex = 0;
-            this.tabControl_Main.Size = new System.Drawing.Size(1193, 589);
+            this.tabControl_Main.Size = new System.Drawing.Size(1583, 773);
             this.tabControl_Main.TabIndex = 2;
             // 
             // tab_Home
@@ -161,7 +164,7 @@
             this.tab_Home.Location = new System.Drawing.Point(4, 33);
             this.tab_Home.Name = "tab_Home";
             this.tab_Home.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Home.Size = new System.Drawing.Size(1185, 552);
+            this.tab_Home.Size = new System.Drawing.Size(1575, 736);
             this.tab_Home.TabIndex = 0;
             this.tab_Home.Text = "Home";
             this.tab_Home.Click += new System.EventHandler(this.tab_Home_Click);
@@ -172,7 +175,7 @@
             this.tab_Schedule.Location = new System.Drawing.Point(4, 33);
             this.tab_Schedule.Name = "tab_Schedule";
             this.tab_Schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Schedule.Size = new System.Drawing.Size(1185, 546);
+            this.tab_Schedule.Size = new System.Drawing.Size(1589, 736);
             this.tab_Schedule.TabIndex = 1;
             this.tab_Schedule.Text = "Schedule";
             // 
@@ -181,7 +184,7 @@
             this.tab_Reports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.tab_Reports.Location = new System.Drawing.Point(4, 33);
             this.tab_Reports.Name = "tab_Reports";
-            this.tab_Reports.Size = new System.Drawing.Size(1185, 546);
+            this.tab_Reports.Size = new System.Drawing.Size(1589, 736);
             this.tab_Reports.TabIndex = 2;
             this.tab_Reports.Text = "Reports";
             // 
@@ -189,7 +192,7 @@
             // 
             this.lbl_TimeLocal.AutoSize = true;
             this.lbl_TimeLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TimeLocal.Location = new System.Drawing.Point(153, 8);
+            this.lbl_TimeLocal.Location = new System.Drawing.Point(161, 8);
             this.lbl_TimeLocal.Name = "lbl_TimeLocal";
             this.lbl_TimeLocal.Size = new System.Drawing.Size(77, 18);
             this.lbl_TimeLocal.TabIndex = 5;
@@ -211,23 +214,33 @@
             this.lbl_DateLocal.TabIndex = 6;
             this.lbl_DateLocal.Text = "LocalDate";
             // 
-            // panel1
+            // pnl_Footer
             // 
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.Controls.Add(this.lbl_TimeLocal);
-            this.panel1.Controls.Add(this.lbl_DateLocal);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(3, 642);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1194, 34);
-            this.panel1.TabIndex = 3;
+            this.pnl_Footer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.pnl_Footer.Controls.Add(this.lbl_TimeLocal);
+            this.pnl_Footer.Controls.Add(this.lbl_DateLocal);
+            this.pnl_Footer.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_Footer.Location = new System.Drawing.Point(3, 859);
+            this.pnl_Footer.Name = "pnl_Footer";
+            this.pnl_Footer.Size = new System.Drawing.Size(1594, 34);
+            this.pnl_Footer.TabIndex = 3;
+            // 
+            // lbl_userID
+            // 
+            this.lbl_userID.AutoSize = true;
+            this.lbl_userID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_userID.Location = new System.Drawing.Point(12, 44);
+            this.lbl_userID.Name = "lbl_userID";
+            this.lbl_userID.Size = new System.Drawing.Size(46, 16);
+            this.lbl_userID.TabIndex = 5;
+            this.lbl_userID.Text = "userID";
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
-            this.ClientSize = new System.Drawing.Size(1200, 680);
+            this.ClientSize = new System.Drawing.Size(1600, 900);
             this.Controls.Add(this.flpMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
@@ -242,8 +255,8 @@
             this.pnl_Tabs.PerformLayout();
             this.pnl_WindowButtons.ResumeLayout(false);
             this.tabControl_Main.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.pnl_Footer.ResumeLayout(false);
+            this.pnl_Footer.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -264,6 +277,7 @@
         private System.Windows.Forms.Label lbl_TimeLocal;
         private System.Windows.Forms.Timer timer_DateTimeLabel;
         private System.Windows.Forms.Label lbl_DateLocal;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnl_Footer;
+        private System.Windows.Forms.Label lbl_userID;
     }
 }
