@@ -11,7 +11,7 @@ namespace scheduler
     {
         //Localization Variables
         ResourceManager rm = new ResourceManager("scheduler.Resources.Login.Strings", typeof(Login).Assembly);
-        CultureInfo culture = CultureInfo.CreateSpecificCulture("de");
+        CultureInfo culture = CultureInfo.CurrentCulture;
         
         public Login()
         {
@@ -90,12 +90,11 @@ namespace scheduler
         {
             mouseDown = false;
         }
-
         //-----------------------------------------------------------------------
         
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
         
         private void Login_Load(object sender, EventArgs e)
