@@ -1,7 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿using System;
+using MySql.Data.MySqlClient;
 using scheduler.Database;
-using System;
-using System.Windows.Forms;
+using scheduler.Logging;
 
 namespace scheduler.Authentication
 {
@@ -23,22 +23,28 @@ namespace scheduler.Authentication
 
                     //Connection opens for command execution
                     conn.Open();
+                    DateTime queryTimestamp = DateTime.UtcNow;
 
                     //Query data checks for a match and stores the result
                     MySqlDataReader reader = command.ExecuteReader();
                     result = reader.Read();
 
                     /*
-                    *  When authentication succeeds, an activeUser is initialized and stored in the associated class with
-                    *  the associated userID, userName, and password. The positive boolean is then returned to the
-                    *  caller. Otherwise, will return a negative result and prompt user for correct credentials.
+                    *  When authentication succeeds, an activeUser is initialized and stored with
+                    *  the associated userID and userName. A log of the successful attempt is written to 
+                    *  file. The positive boolean is then returned to the caller.
                     */
                     if (result)
                     {
                         uint userID = reader.GetUInt32(0); //Assigned to userID the 0th column value: "userID"
-                        ActiveUserInformation.activeUser = new ActiveUserInformation(userID, userName, password);
+                        ActiveUser.userInformation = new ActiveUser(userID, userName);
+
+                        Log.CreateLog(userName, queryTimestamp, result);
                         return result;
                     }
+
+                    //An unsuccessful login will return false, logging a failure to file.
+                    Log.CreateLog(userName, queryTimestamp, result);
                     return result;
                 }
             }
