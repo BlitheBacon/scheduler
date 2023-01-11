@@ -9,7 +9,7 @@ namespace scheduler.Authentication
     {
         public static bool AuthenticateUser(string userName, string password)
         {
-            string query = "Select * from user Where userName = @userName and password = @password";
+            string query = "Select userID, userName, password from user Where userName = @userName and password = @password";
             bool result = false;
 
             //Connection string is known at runtime and is stored in the DBConnection class
@@ -17,10 +17,14 @@ namespace scheduler.Authentication
             {
                 using(MySqlCommand command = new MySqlCommand(query, conn))
                 {
-                    command.Parameters.Add("@userID", MySqlDbType.Int32);
+                    //Setting parameters for query string.
                     command.Parameters.Add("@userName", MySqlDbType.VarChar).Value = userName;
                     command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
+
+                    //Connection opens for command execution
                     conn.Open();
+
+                    //Query data checks for a match and stores the result
                     MySqlDataReader reader = command.ExecuteReader();
                     result = reader.Read();
 
