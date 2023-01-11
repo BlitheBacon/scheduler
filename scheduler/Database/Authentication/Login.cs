@@ -1,9 +1,9 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
-using scheduler.Database;
+using scheduler.User;
 using scheduler.Logging;
 
-namespace scheduler.Authentication
+namespace scheduler.Database.Authentication
 {
     internal class Login
     {
