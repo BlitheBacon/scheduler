@@ -98,9 +98,9 @@
             this.pnl_WindowButtons.Controls.Add(this.btn_Maximize);
             this.pnl_WindowButtons.Controls.Add(this.btn_Minimize);
             this.pnl_WindowButtons.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_WindowButtons.Location = new System.Drawing.Point(1495, 0);
+            this.pnl_WindowButtons.Location = new System.Drawing.Point(1448, 0);
             this.pnl_WindowButtons.Name = "pnl_WindowButtons";
-            this.pnl_WindowButtons.Size = new System.Drawing.Size(105, 77);
+            this.pnl_WindowButtons.Size = new System.Drawing.Size(152, 77);
             this.pnl_WindowButtons.TabIndex = 3;
             // 
             // btn_Close
@@ -108,9 +108,9 @@
             this.btn_Close.BackColor = System.Drawing.Color.Transparent;
             this.btn_Close.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Close.ForeColor = System.Drawing.Color.Black;
-            this.btn_Close.Location = new System.Drawing.Point(71, 6);
+            this.btn_Close.Location = new System.Drawing.Point(104, 6);
             this.btn_Close.Name = "btn_Close";
-            this.btn_Close.Size = new System.Drawing.Size(28, 28);
+            this.btn_Close.Size = new System.Drawing.Size(40, 40);
             this.btn_Close.TabIndex = 2;
             this.btn_Close.Text = "X";
             this.btn_Close.UseVisualStyleBackColor = false;
@@ -122,9 +122,9 @@
             this.btn_Maximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Maximize.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Maximize.ForeColor = System.Drawing.Color.Black;
-            this.btn_Maximize.Location = new System.Drawing.Point(37, 6);
+            this.btn_Maximize.Location = new System.Drawing.Point(58, 6);
             this.btn_Maximize.Name = "btn_Maximize";
-            this.btn_Maximize.Size = new System.Drawing.Size(28, 28);
+            this.btn_Maximize.Size = new System.Drawing.Size(40, 40);
             this.btn_Maximize.TabIndex = 1;
             this.btn_Maximize.Text = "◻";
             this.btn_Maximize.UseVisualStyleBackColor = false;
@@ -135,9 +135,9 @@
             this.btn_Minimize.BackColor = System.Drawing.Color.Transparent;
             this.btn_Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Minimize.ForeColor = System.Drawing.Color.Black;
-            this.btn_Minimize.Location = new System.Drawing.Point(3, 6);
+            this.btn_Minimize.Location = new System.Drawing.Point(12, 6);
             this.btn_Minimize.Name = "btn_Minimize";
-            this.btn_Minimize.Size = new System.Drawing.Size(28, 28);
+            this.btn_Minimize.Size = new System.Drawing.Size(40, 40);
             this.btn_Minimize.TabIndex = 0;
             this.btn_Minimize.Text = "_";
             this.btn_Minimize.UseVisualStyleBackColor = false;
@@ -175,7 +175,7 @@
             this.tab_Schedule.Location = new System.Drawing.Point(4, 33);
             this.tab_Schedule.Name = "tab_Schedule";
             this.tab_Schedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Schedule.Size = new System.Drawing.Size(1589, 736);
+            this.tab_Schedule.Size = new System.Drawing.Size(1575, 736);
             this.tab_Schedule.TabIndex = 1;
             this.tab_Schedule.Text = "Schedule";
             // 
@@ -184,7 +184,7 @@
             this.tab_Reports.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.tab_Reports.Location = new System.Drawing.Point(4, 33);
             this.tab_Reports.Name = "tab_Reports";
-            this.tab_Reports.Size = new System.Drawing.Size(1589, 736);
+            this.tab_Reports.Size = new System.Drawing.Size(1575, 736);
             this.tab_Reports.TabIndex = 2;
             this.tab_Reports.Text = "Reports";
             // 
