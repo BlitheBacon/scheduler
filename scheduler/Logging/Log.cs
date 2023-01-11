@@ -27,7 +27,7 @@ namespace scheduler.Logging
             FileInfo myFile;                            //File system information
             DateTime latestLog = new DateTime();        //DateTime variable for currentDate comparison
 
-            //Searches the /Logs/ directory, discarding the exception if empty
+            //Searches the /Logs/ directory, discarding the thrown exception if empty
             try
             {
                 myFile = directory.GetFiles()
@@ -77,7 +77,7 @@ namespace scheduler.Logging
                     if (NewLogCheck())
                     {
                         //Create a new file with a successful login message
-                        using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
+                        using (StreamWriter sw = File.CreateText(path))
                         {
                             sw.WriteLine($"Successful login for user: {username} at {timestamp}");
                         }
@@ -95,7 +95,7 @@ namespace scheduler.Logging
                     if (NewLogCheck())
                     {
                         //Create a new file with an unsuccessful login message
-                        using (StreamWriter sw = (File.Exists(path)) ? File.AppendText(path) : File.CreateText(path))
+                        using (StreamWriter sw = File.CreateText(path))
                         {
                             sw.WriteLine($"Unsuccessful login for user: {username} at {timestamp}");
                         }
