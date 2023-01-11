@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.flpMain = new System.Windows.Forms.FlowLayoutPanel();
             this.pnl_Tabs = new System.Windows.Forms.Panel();
+            this.lbl_userID = new System.Windows.Forms.Label();
             this.lbl_LoggedInUser = new System.Windows.Forms.Label();
             this.pnl_WindowButtons = new System.Windows.Forms.Panel();
             this.btn_Close = new System.Windows.Forms.Button();
@@ -40,15 +41,16 @@
             this.tab_Home = new System.Windows.Forms.TabPage();
             this.tab_Schedule = new System.Windows.Forms.TabPage();
             this.tab_Reports = new System.Windows.Forms.TabPage();
-            this.lbl_TimeLocal = new System.Windows.Forms.Label();
-            this.timer_DateTimeLabel = new System.Windows.Forms.Timer(this.components);
-            this.lbl_DateLocal = new System.Windows.Forms.Label();
             this.pnl_Footer = new System.Windows.Forms.Panel();
-            this.lbl_userID = new System.Windows.Forms.Label();
+            this.lbl_TimeLocal = new System.Windows.Forms.Label();
+            this.lbl_DateLocal = new System.Windows.Forms.Label();
+            this.timer_DateTimeLabel = new System.Windows.Forms.Timer(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.flpMain.SuspendLayout();
             this.pnl_Tabs.SuspendLayout();
             this.pnl_WindowButtons.SuspendLayout();
             this.tabControl_Main.SuspendLayout();
+            this.tab_Home.SuspendLayout();
             this.pnl_Footer.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +82,16 @@
             this.pnl_Tabs.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_Event_MouseDown);
             this.pnl_Tabs.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_Event_MouseMove);
             this.pnl_Tabs.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_Event_MouseUp);
+            // 
+            // lbl_userID
+            // 
+            this.lbl_userID.AutoSize = true;
+            this.lbl_userID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_userID.Location = new System.Drawing.Point(12, 44);
+            this.lbl_userID.Name = "lbl_userID";
+            this.lbl_userID.Size = new System.Drawing.Size(46, 16);
+            this.lbl_userID.TabIndex = 5;
+            this.lbl_userID.Text = "userID";
             // 
             // lbl_LoggedInUser
             // 
@@ -160,6 +172,7 @@
             // tab_Home
             // 
             this.tab_Home.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.tab_Home.Controls.Add(this.label1);
             this.tab_Home.ForeColor = System.Drawing.Color.Black;
             this.tab_Home.Location = new System.Drawing.Point(4, 33);
             this.tab_Home.Name = "tab_Home";
@@ -188,32 +201,6 @@
             this.tab_Reports.TabIndex = 2;
             this.tab_Reports.Text = "Reports";
             // 
-            // lbl_TimeLocal
-            // 
-            this.lbl_TimeLocal.AutoSize = true;
-            this.lbl_TimeLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_TimeLocal.Location = new System.Drawing.Point(161, 8);
-            this.lbl_TimeLocal.Name = "lbl_TimeLocal";
-            this.lbl_TimeLocal.Size = new System.Drawing.Size(77, 18);
-            this.lbl_TimeLocal.TabIndex = 5;
-            this.lbl_TimeLocal.Text = "LocalTime";
-            // 
-            // timer_DateTimeLabel
-            // 
-            this.timer_DateTimeLabel.Enabled = true;
-            this.timer_DateTimeLabel.Interval = 500;
-            this.timer_DateTimeLabel.Tick += new System.EventHandler(this.timer_DateTimeLabel_Tick);
-            // 
-            // lbl_DateLocal
-            // 
-            this.lbl_DateLocal.AutoSize = true;
-            this.lbl_DateLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_DateLocal.Location = new System.Drawing.Point(7, 8);
-            this.lbl_DateLocal.Name = "lbl_DateLocal";
-            this.lbl_DateLocal.Size = new System.Drawing.Size(75, 18);
-            this.lbl_DateLocal.TabIndex = 6;
-            this.lbl_DateLocal.Text = "LocalDate";
-            // 
             // pnl_Footer
             // 
             this.pnl_Footer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -225,15 +212,41 @@
             this.pnl_Footer.Size = new System.Drawing.Size(1594, 34);
             this.pnl_Footer.TabIndex = 3;
             // 
-            // lbl_userID
+            // lbl_TimeLocal
             // 
-            this.lbl_userID.AutoSize = true;
-            this.lbl_userID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_userID.Location = new System.Drawing.Point(12, 44);
-            this.lbl_userID.Name = "lbl_userID";
-            this.lbl_userID.Size = new System.Drawing.Size(46, 16);
-            this.lbl_userID.TabIndex = 5;
-            this.lbl_userID.Text = "userID";
+            this.lbl_TimeLocal.AutoSize = true;
+            this.lbl_TimeLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_TimeLocal.Location = new System.Drawing.Point(161, 8);
+            this.lbl_TimeLocal.Name = "lbl_TimeLocal";
+            this.lbl_TimeLocal.Size = new System.Drawing.Size(77, 18);
+            this.lbl_TimeLocal.TabIndex = 5;
+            this.lbl_TimeLocal.Text = "LocalTime";
+            // 
+            // lbl_DateLocal
+            // 
+            this.lbl_DateLocal.AutoSize = true;
+            this.lbl_DateLocal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_DateLocal.Location = new System.Drawing.Point(7, 8);
+            this.lbl_DateLocal.Name = "lbl_DateLocal";
+            this.lbl_DateLocal.Size = new System.Drawing.Size(75, 18);
+            this.lbl_DateLocal.TabIndex = 6;
+            this.lbl_DateLocal.Text = "LocalDate";
+            // 
+            // timer_DateTimeLabel
+            // 
+            this.timer_DateTimeLabel.Enabled = true;
+            this.timer_DateTimeLabel.Interval = 500;
+            this.timer_DateTimeLabel.Tick += new System.EventHandler(this.timer_DateTimeLabel_Tick);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(33, 43);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(245, 25);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Upcoming Appointments";
             // 
             // Main
             // 
@@ -255,6 +268,8 @@
             this.pnl_Tabs.PerformLayout();
             this.pnl_WindowButtons.ResumeLayout(false);
             this.tabControl_Main.ResumeLayout(false);
+            this.tab_Home.ResumeLayout(false);
+            this.tab_Home.PerformLayout();
             this.pnl_Footer.ResumeLayout(false);
             this.pnl_Footer.PerformLayout();
             this.ResumeLayout(false);
@@ -279,5 +294,6 @@
         private System.Windows.Forms.Label lbl_DateLocal;
         private System.Windows.Forms.Panel pnl_Footer;
         private System.Windows.Forms.Label lbl_userID;
+        private System.Windows.Forms.Label label1;
     }
 }

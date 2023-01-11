@@ -12,8 +12,8 @@ namespace scheduler.Forms
             InitializeComponent();
 
             //Labels
-            lbl_LoggedInUser.Text = ActiveUserInformation.activeUser.UserName;
-            lbl_userID.Text = ActiveUserInformation.activeUser.UserID.ToString();
+            lbl_LoggedInUser.Text = ActiveUser.userInformation.UserName;
+            lbl_userID.Text = ActiveUser.userInformation.UserID.ToString();
 
             //Form Component Adjustments
             //Button Adjustments and Localization
@@ -32,10 +32,7 @@ namespace scheduler.Forms
 
         }
 
-        /*
-          Enables window click-and-drag functionality without a title bar
-        */
-        //-----------------------------------------------------------------------
+        /* Enables window click-and-drag functionality without a title bar */
         //Variables
         private bool mouseDown;
         private Point lastLocation;
@@ -66,10 +63,9 @@ namespace scheduler.Forms
             lbl_TimeLocal.Text = DateTime.Now.ToString("HH:mm:ss");
             lbl_DateLocal.Text = DateTime.Now.ToString("dddd | MM-dd-yyyy |");
         }
-
         //-----------------------------------------------------------------------
 
-        //Task bar buttons
+        /* Task bar buttons */
         private void btn_MinimizeClick(object sender, EventArgs e)
         {
             if (WindowState == FormWindowState.Normal)
@@ -96,11 +92,11 @@ namespace scheduler.Forms
         {
             Application.Exit();
         }
+        //----------------------------------------------------------------------------
 
         private void tab_Home_Click(object sender, EventArgs e)
         {
 
         }
-        //----------------------------------------------------------------------------
     }
 }
