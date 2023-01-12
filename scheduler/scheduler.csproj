@@ -85,7 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Authentication\Login.cs" />
-    <Compile Include="Database\Customer.cs" />
+    <Compile Include="Database\Query.cs" />
     <Compile Include="User\ActiveUser.cs" />
     <Compile Include="Customers\Appointment.cs" />
     <Compile Include="Customers\Customer.cs" />

@@ -30,8 +30,12 @@ namespace scheduler.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-            //Call required DB queries
-            Customer.PopulateData();
+            //Queries
+            //Populates ActiveUser
+            Query.CustomerData();
+
+            //Populates Appointment data for customers relevant to ActiveUser
+            Query.AppointmentData(ActiveUser.userInformation.UserID);
         }
 
         /* Enables window click-and-drag functionality without a title bar */
@@ -92,7 +96,7 @@ namespace scheduler.Forms
         }
         private void btn_CloseClick(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(1);
         }
         //----------------------------------------------------------------------------
 
