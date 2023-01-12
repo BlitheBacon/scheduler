@@ -15,7 +15,7 @@ namespace scheduler.User
             UserName = userName;
         }
 
-        public static ActiveUser userInformation;
+        public static ActiveUser userInformation = null;
 
         //Private Fields
         private UInt32? _userID = null;
