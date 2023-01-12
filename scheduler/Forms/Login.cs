@@ -93,7 +93,7 @@ namespace scheduler
         
         private void btn_Close_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            Environment.Exit(0);
         }
         
         private void Login_Load(object sender, EventArgs e)
