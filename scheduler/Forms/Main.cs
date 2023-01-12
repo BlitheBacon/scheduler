@@ -1,4 +1,5 @@
-﻿using scheduler.Authentication;
+﻿using scheduler.Database;
+using scheduler.User;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -29,7 +30,8 @@ namespace scheduler.Forms
 
         private void Main_Load(object sender, EventArgs e)
         {
-
+            //Call required DB queries
+            Customer.PopulateData();
         }
 
         /* Enables window click-and-drag functionality without a title bar */

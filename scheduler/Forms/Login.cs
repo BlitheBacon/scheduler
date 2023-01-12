@@ -1,5 +1,4 @@
-﻿using scheduler.Forms;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Globalization;
 using System.Resources;
@@ -46,7 +45,7 @@ namespace scheduler
             }
             else
             {
-                bool result = Authentication.Login.AuthenticateUser(
+                bool result = Database.Authentication.Login.AuthenticateUser(
                     tb_Username.Text.Trim(),
                     tb_Password.Text.Trim());
 

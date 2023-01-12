@@ -84,8 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authentication\Login.cs" />
-    <Compile Include="Authentication\ActiveUser.cs" />
+    <Compile Include="Database\Authentication\Login.cs" />
+    <Compile Include="Database\Customer.cs" />
+    <Compile Include="User\ActiveUser.cs" />
+    <Compile Include="Customers\Appointment.cs" />
+    <Compile Include="Customers\Customer.cs" />
+    <Compile Include="Customers\Address.cs" />
     <Compile Include="Database\DBConnection.cs" />
     <Compile Include="Forms\Login.cs">
       <SubType>Form</SubType>
