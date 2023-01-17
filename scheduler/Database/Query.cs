@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using scheduler.Customers;
+using scheduler.User;
 
 namespace scheduler.Database
 {
@@ -37,7 +38,7 @@ namespace scheduler.Database
 
                         while (reader.Read())
                         {
-                            Customer.CustomerList.Add(new Customer(
+                            Customer.CustomerDict.Add((int)reader.GetUInt32(0), new Customer(
                                 (int)reader.GetUInt32(0),                                      //Customer ID
                                      reader.GetString(1),                                      //Customer Name
                                     (reader.IsDBNull(2)) ? null : (int?)reader.GetUInt32(2),   //Customer Address, handles nulls
@@ -59,7 +60,7 @@ namespace scheduler.Database
         public static bool AppointmentData(uint userID)
         {
             bool success = false;
-            string appointmentQuery = @"SELECT c.customerId, u.userId, a.appointmentId, a.title, a.description, a.location, 
+            string appointmentQuery = @"SELECT c.customerId, u.userId, a.appointmentId, c.customerName, a.title, a.description, a.location, 
                                                a.contact, a.type, a.url, a.start, a.end, a.createdBy, a.createDate, 
                                                a.lastUpdate, a.lastUpdateBy 
                                         FROM customer as c 
@@ -88,27 +89,28 @@ namespace scheduler.Database
                         MySqlDataReader reader = command.ExecuteReader();
 
                         int index = 0;
-                        Customer curCustomer = Customer.CustomerList[index];
+                        //Customer curCustomer = Customer.CustomerDict[index];
 
                         while (reader.Read())
                         {
-                            if (curCustomer.CustomerID == reader.GetUInt32(0))
+                            if (ActiveUser.userInformation.UserID == reader.GetUInt32(1))
                             {
-                                curCustomer.appointmentList.Add(new Appointment(
+                                Appointment.AllAppointments.Add(new Appointment(
                                     (int)reader.GetUInt32(2),  //| Column: appointmentId  | Var: AppointmentID
-                                    (int)reader.GetUInt32(1),  //| Column: customerId     | Var: CustomerID
-                                    reader.GetString(3),       //| Column: title          | Var: Title
-                                    reader.GetString(4),       //| Column: description    | Var: Description
-                                    reader.GetString(5),       //| Column: location       | Var: Location
-                                    reader.GetString(6),       //| Column: contact        | Var: Contact
-                                    reader.GetString(7),       //| Column: type           | Var: Type
-                                    reader.GetString(8),       //| Column: url            | Var: URL
-                                    reader.GetDateTime(9),     //| Column: start          | Var: Start
-                                    reader.GetDateTime(10),    //| Column: end            | Var: End
-                                    reader.GetDateTime(12),    //| Column: createdBy      | Var: CreatedBy
-                                    reader.GetString(11),      //| Column: createDate     | Var: CreatedDate
-                                    reader.GetDateTime(13),    //| Column: lastUpdate     | Var: LastUpdate
-                                    reader.GetString(14)));    //| Column: lastUpdateBy   | Var: LastUpdateBy
+                                    (int)reader.GetUInt32(0),  //| Column: customerId     | Var: CustomerID
+                                    reader.GetString(3),       //| Column: name           | Var: Name
+                                    reader.GetString(4),       //| Column: title          | Var: Title
+                                    reader.GetString(5),       //| Column: description    | Var: Description
+                                    reader.GetString(6),       //| Column: location       | Var: Location
+                                    reader.GetString(7),       //| Column: contact        | Var: Contact
+                                    reader.GetString(8),       //| Column: type           | Var: Type
+                                    reader.GetString(9),       //| Column: url            | Var: URL
+                                    reader.GetDateTime(10),    //| Column: start          | Var: Start
+                                    reader.GetDateTime(11),    //| Column: end            | Var: End
+                                    reader.GetDateTime(13),    //| Column: createdBy      | Var: CreatedBy
+                                    reader.GetString(12),      //| Column: createDate     | Var: CreatedDate
+                                    reader.GetDateTime(14),    //| Column: lastUpdate     | Var: LastUpdate
+                                    reader.GetString(15)));    //| Column: lastUpdateBy   | Var: LastUpdateBy
                             }
                         }
                     }

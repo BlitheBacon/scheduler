@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace scheduler.Customers
 {
     internal class Customer
     {
-        public static List<Customer> CustomerList = new List<Customer>();
+        public static Dictionary<int, Customer> CustomerDict = new Dictionary<int, Customer>();
+        public BindingList<Appointment> AppointmentList = new BindingList<Appointment>();
 
         public Customer(int customerID, string customerName, int? addressID, int? appointmentID)
         {
@@ -25,7 +27,6 @@ namespace scheduler.Customers
         private int? _appointmentID;
 
 
-        public List<Appointment> appointmentList = new List<Appointment>();
         public Address primaryAddress = null;
         public Address secondaryAddress = null;
 
