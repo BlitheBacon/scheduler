@@ -9,20 +9,30 @@ namespace scheduler.Database.Authentication
     {
         public static bool AuthenticateUser(string userName, string password)
         {
-            string query = "Select userID, userName, password from user Where userName = @userName and password = @password";
+            string userInfoQuery = @"SELECT userID, userName, password 
+                                    FROM user 
+                                    WHERE userName = @userName AND password = @password";
+            string userAppointmentQuery = @"SELECT appointmentId 
+                                            FROM appointment as a 
+                                            LEFT JOIN (SELECT user.userId FROM USER) AS u 
+                                            ON a.userId = u.userId
+                                            WHERE a.userId = @userID";
             bool result = false;
 
             //Connection string is known at runtime and is stored in the DBConnection class
             using (MySqlConnection conn = new MySqlConnection(DBConnection.connStr))
             {
-                using(MySqlCommand command = new MySqlCommand(query, conn))
+                //Connection opens for command execution
+                conn.Open();
+
+                //Retrieves userID and userName data
+                using (MySqlCommand command = new MySqlCommand(userInfoQuery, conn))
                 {
-                    //Setting parameters for query string.
+                    //Setting parameters for query string
                     command.Parameters.Add("@userName", MySqlDbType.VarChar).Value = userName;
                     command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
 
-                    //Connection opens for command execution
-                    conn.Open();
+                    //Sets the time stamp for log files
                     DateTime queryTimestamp = DateTime.UtcNow;
 
                     //Query data checks for a match and stores the result
@@ -40,14 +50,33 @@ namespace scheduler.Database.Authentication
                         ActiveUser.userInformation = new ActiveUser(userID, userName);
 
                         Log.CreateLog(userName, queryTimestamp, result);
+                        reader.Close();
+                    }
+                    else
+                    {
+                        //An unsuccessful login will return false, logging a failure to file.
+                        Log.CreateLog(userName, queryTimestamp, result);
                         return result;
                     }
+                }
+                //Retrieves user appointment data using previously retrieved userID
+                using (MySqlCommand command = new MySqlCommand(userAppointmentQuery, conn))
+                {
+                    //Setting parameters for query string
+                    command.Parameters.Add("@userID", MySqlDbType.Int32).Value = ActiveUser.userInformation.UserID;
 
-                    //An unsuccessful login will return false, logging a failure to file.
-                    Log.CreateLog(userName, queryTimestamp, result);
-                    return result;
+                    //Query data checks for a match and stores the result
+                    MySqlDataReader reader = command.ExecuteReader();
+
+                    //Loops through the reader and adding appointment IDs to ActiveUser appointment list
+                    while (reader.Read())
+                    {
+                        ActiveUser.userInformation.appointments.Add((int)reader["appointmentId"]);
+                    }
                 }
             }
+            //returns a successful Login attempt
+            return result;
         }
     }
 }
