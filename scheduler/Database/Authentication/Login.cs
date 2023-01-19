@@ -46,7 +46,7 @@ namespace scheduler.Database.Authentication
                     */
                     if (result)
                     {
-                        uint userId = reader.GetUInt32(0); //Assigned to userID the 0th column value: "userID"
+                        int userId = (int)reader.GetUInt32(0); //Assigned to userID the 0th column value: "userID"
                         ActiveUser.UserInformation = new ActiveUser(userId, userName);
 
                         Log.CreateLog(userName, queryTimestamp, result);

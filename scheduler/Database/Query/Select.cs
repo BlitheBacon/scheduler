@@ -58,7 +58,7 @@ namespace scheduler.Database.Query
         }
 
         //Retrieves customer appointment data relevant to the current active user
-        public static bool AppointmentData(uint? userId)
+        public static bool AppointmentData(int userId)
         {
             bool success = false;
             string appointmentQuery = @"SELECT c.customerId, u.userId, a.appointmentId, c.customerName, a.title, a.description, a.location, 

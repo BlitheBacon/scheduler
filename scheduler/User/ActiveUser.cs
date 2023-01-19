@@ -11,7 +11,7 @@ namespace scheduler.User
     internal class ActiveUser
     {
         public ActiveUser() { }
-        public ActiveUser(uint userId, string userName)
+        public ActiveUser(int userId, string userName)
         {
             UserId = userId;
             UserName = userName;
@@ -21,12 +21,12 @@ namespace scheduler.User
         public BindingList<int> Appointments = new BindingList<int>();
 
         //Private Fields
-        private uint? _userId = null;
-        private string _userName = null;
+        private int _userId;
+        private string _userName;
 
         //Public Field Interface
-        public uint? UserId { get => _userId; set => _userId = value; }
-        public string UserName { get; set; }
+        public int UserId { get => _userId; set => _userId = value; }
+        public string UserName { get => _userName; set => _userName = value; }
 
     }
 }

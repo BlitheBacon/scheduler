@@ -8,7 +8,8 @@ namespace scheduler.Database.Query
 {
     internal class Update
     {
-        public static bool AddressData(int customerID, string address, string address2, string city, string country, string postalCode, string phone)
+        //Queries the DB for customer datasets: Customer and Address
+        public static bool CustomerData(int customerID, string address, string address2, string city, string country, string postalCode, string phone)
         {
             bool success = false;
             string addressQuery = @"UPDATE address as a
