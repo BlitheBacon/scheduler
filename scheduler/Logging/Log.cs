@@ -11,9 +11,9 @@ namespace scheduler.Logging
     public class Log
     {
         //Fields
-        private readonly static DateTime currentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-        private readonly static string fileName = $"{currentDate.ToString("M-yyyy")}.txt";
-        private readonly static string path = $"Logs\\{fileName}";
+        private readonly static DateTime CurrentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        private readonly static string FileName = $"{CurrentDate.ToString("M-yyyy")}.txt";
+        private readonly static string Path = $"Logs\\{FileName}";
 
         //Functions
         private static bool NewLogCheck()
@@ -51,13 +51,13 @@ namespace scheduler.Logging
             }
 
             //Compares the most recent log file date against the current date to determine new log creation need
-            if (currentDate.Year > latestLog.Year)
+            if (CurrentDate.Year > latestLog.Year)
             {
                 return true;
             }
             else
             {
-                if (currentDate.Month > latestLog.Month)
+                if (CurrentDate.Month > latestLog.Month)
                 {
                     return true;
                 }
@@ -77,7 +77,7 @@ namespace scheduler.Logging
                     if (NewLogCheck())
                     {
                         //Create a new file with a successful login message
-                        using (StreamWriter sw = File.CreateText(path))
+                        using (StreamWriter sw = File.CreateText(Path))
                         {
                             sw.WriteLine($"Successful login for user: {username} at {timestamp}");
                         }
@@ -85,7 +85,7 @@ namespace scheduler.Logging
                     else
                     {
                         //Create a successful login message
-                        using (StreamWriter sw = (File.AppendText(path)))
+                        using (StreamWriter sw = (File.AppendText(Path)))
                         {
                             sw.WriteLine($"Successful login for user: {username} at {timestamp}");
                         }
@@ -95,7 +95,7 @@ namespace scheduler.Logging
                     if (NewLogCheck())
                     {
                         //Create a new file with an unsuccessful login message
-                        using (StreamWriter sw = File.CreateText(path))
+                        using (StreamWriter sw = File.CreateText(Path))
                         {
                             sw.WriteLine($"Unsuccessful login for user: {username} at {timestamp}");
                         }
@@ -103,7 +103,7 @@ namespace scheduler.Logging
                     else
                     {
                         //Create an unsuccessful login message
-                        using (StreamWriter sw = (File.AppendText(path)))
+                        using (StreamWriter sw = (File.AppendText(Path)))
                         {
                             sw.WriteLine($"Unsuccessful login for user: {username} at {timestamp}");
                         }

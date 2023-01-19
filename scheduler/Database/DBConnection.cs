@@ -4,23 +4,23 @@ using System.Windows.Forms;
 
 namespace scheduler.Database
 {
-    public class DBConnection
+    public class DbConnection
     {
-        public static MySqlConnection conn { get; set; }
+        public static MySqlConnection Conn { get; set; }
 
         //Found within the 'App.config' file.
-        public static string connStr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
+        public static string ConnStr = ConfigurationManager.ConnectionStrings["localdb"].ConnectionString;
 
-        public static void startConnection()
+        public static void StartConnection()
         {
             try
             {
                 //Initialize and open the connection.
-                conn = new MySqlConnection(connStr);
-                conn.Open();
+                Conn = new MySqlConnection(ConnStr);
+                Conn.Open();
 
                 //Debugging messages
-                //MessageBox.Show("Conection is open.");
+                //MessageBox.Show("Connection is open.");
             }
             catch (MySqlException mysqlEx)
             {
@@ -29,13 +29,13 @@ namespace scheduler.Database
             }
         }
 
-        public static void closeConnection()
+        public static void CloseConnection()
         {
             try
             {
-                if (conn != null)
+                if (Conn != null)
                 {
-                    conn.Close();
+                    Conn.Close();
 
                     //Debugging messages
                     //MessageBox.Show("Connection Closed.");

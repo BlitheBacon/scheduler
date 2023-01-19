@@ -20,7 +20,7 @@ namespace scheduler.Database.Authentication
             bool result = false;
 
             //Connection string is known at runtime and is stored in the DBConnection class
-            using (MySqlConnection conn = new MySqlConnection(DBConnection.connStr))
+            using (MySqlConnection conn = new MySqlConnection(DbConnection.ConnStr))
             {
                 //Connection opens for command execution
                 conn.Open();
@@ -46,8 +46,8 @@ namespace scheduler.Database.Authentication
                     */
                     if (result)
                     {
-                        uint userID = reader.GetUInt32(0); //Assigned to userID the 0th column value: "userID"
-                        ActiveUser.userInformation = new ActiveUser(userID, userName);
+                        uint userId = reader.GetUInt32(0); //Assigned to userID the 0th column value: "userID"
+                        ActiveUser.UserInformation = new ActiveUser(userId, userName);
 
                         Log.CreateLog(userName, queryTimestamp, result);
                         reader.Close();
@@ -63,7 +63,7 @@ namespace scheduler.Database.Authentication
                 using (MySqlCommand command = new MySqlCommand(userAppointmentQuery, conn))
                 {
                     //Setting parameters for query string
-                    command.Parameters.Add("@userID", MySqlDbType.Int32).Value = ActiveUser.userInformation.UserID;
+                    command.Parameters.Add("@userID", MySqlDbType.Int32).Value = ActiveUser.UserInformation.UserId;
 
                     //Query data checks for a match and stores the result
                     MySqlDataReader reader = command.ExecuteReader();
@@ -71,7 +71,7 @@ namespace scheduler.Database.Authentication
                     //Loops through the reader and adding appointment IDs to ActiveUser appointment list
                     while (reader.Read())
                     {
-                        ActiveUser.userInformation.appointments.Add((int)reader["appointmentId"]);
+                        ActiveUser.UserInformation.Appointments.Add((int)reader["appointmentId"]);
                     }
                 }
             }

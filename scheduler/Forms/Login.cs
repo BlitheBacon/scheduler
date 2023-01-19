@@ -9,8 +9,8 @@ namespace scheduler
     public partial class Login : Form
     {
         //Localization Variables
-        ResourceManager rm = new ResourceManager("scheduler.Resources.Login.Strings", typeof(Login).Assembly);
-        CultureInfo culture = CultureInfo.CurrentCulture;
+        ResourceManager _rm = new ResourceManager("scheduler.Resources.Login.Strings", typeof(Login).Assembly);
+        CultureInfo _culture = CultureInfo.CurrentCulture;
         
         public Login()
         {
@@ -19,20 +19,20 @@ namespace scheduler
             //Form Component Adjustments
             //Button Adjustments and Localization
             btn_Submit.FlatAppearance.BorderColor = Color.FromArgb(225, 114, 64);
-            btn_Submit.Text = rm.GetString("Submit", culture);
+            btn_Submit.Text = _rm.GetString("Submit", _culture);
             
             btn_Close.FlatAppearance.BorderSize = 0;
             btn_Close.FlatAppearance.BorderColor = Color.FromArgb(0, 255, 255, 255); //Transparent Border
 
             //Label Adjustments and Localization
             lbl_Window.Left = (this.ClientSize.Width - lbl_Window.Size.Width) / 2; //Maintains centered label position
-            lbl_Window.Text = rm.GetString("WindowTitle", culture);
+            lbl_Window.Text = _rm.GetString("WindowTitle", _culture);
 
-            lbl_ErrorText.Text = rm.GetString("ErrLoginFail", culture);
+            lbl_ErrorText.Text = _rm.GetString("ErrLoginFail", _culture);
             lbl_ErrorText.Left = (this.ClientSize.Width - lbl_ErrorText.Size.Width) / 2; //Maintains centered label position
 
-            lbl_Username.Text = rm.GetString("Username", culture);
-            lbl_Password.Text = rm.GetString("Password", culture);
+            lbl_Username.Text = _rm.GetString("Username", _culture);
+            lbl_Password.Text = _rm.GetString("Password", _culture);
         }
 
 
@@ -41,7 +41,7 @@ namespace scheduler
             if (tb_Username.Text == "" ||
                 tb_Password.Text == "")
             {
-                MessageBox.Show(rm.GetString("ErrEnterCredentials", culture));
+                MessageBox.Show(_rm.GetString("ErrEnterCredentials", _culture));
             }
             else
             {
@@ -66,28 +66,28 @@ namespace scheduler
         */
         //-----------------------------------------------------------------------
         //Variables
-        private bool mouseDown;
-        private Point lastLocation;
+        private bool _mouseDown;
+        private Point _lastLocation;
 
         //Functions
         private void LogIn_Event_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseDown = true;
-            lastLocation = e.Location;
+            _mouseDown = true;
+            _lastLocation = e.Location;
         }
         private void LogIn_Event_MouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseDown)
+            if (_mouseDown)
             {
                 this.Location = new Point(
-                    (this.Location.X - lastLocation.X) + e.X,
-                    (this.Location.Y - lastLocation.Y) + e.Y);
+                    (this.Location.X - _lastLocation.X) + e.X,
+                    (this.Location.Y - _lastLocation.Y) + e.Y);
                 this.Update();
             }
         }
         private void LogIn_Event_MouseUp(object sender, MouseEventArgs e)
         {
-            mouseDown = false;
+            _mouseDown = false;
         }
         //-----------------------------------------------------------------------
         

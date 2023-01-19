@@ -11,14 +11,14 @@ namespace scheduler
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        private static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
             //Create database connection prior to the running of the first window
             //to ensure it is usable immediately.
-            DBConnection.startConnection();
+            DbConnection.StartConnection();
 
             //The login form for authentication.
             var formLogin = new Login();
@@ -29,7 +29,7 @@ namespace scheduler
 
 
             //Database connection is severed after the application is closed.
-            DBConnection.closeConnection();
+            DbConnection.CloseConnection();
         }
     }
 }
