@@ -50,7 +50,7 @@ namespace scheduler.Forms
             dgv_upcomingAppointments.Columns[3].DataPropertyName = "Type";
 
             //Customers Tab-----------------------
-
+            
 
 
             //Customer Names LV
@@ -189,8 +189,6 @@ namespace scheduler.Forms
                     tb_customerTab_PhoneNumber.Text      = customer.PrimaryAddress.PhoneNumber;
                     tb_customerTab_City.Text             = customer.PrimaryAddress.City;
                     tb_customerTab_Country.Text          = customer.PrimaryAddress.Country;
-
-
                 }
                 catch (Exception ex)
                 {
@@ -199,11 +197,82 @@ namespace scheduler.Forms
             }
         }
 
-        private void btn_customerTab_Save_Click(object sender, EventArgs e)
+        private void btn_customerTab_New_Click(object sender, EventArgs e)
+        {
+            //Show/hide context specific buttons
+            btn_customerTab_New.Visible = false;
+            btn_customerTab_Edit.Visible = false;
+            btn_customerTab_Delete.Visible = false;
+            btn_customerTab_Save.Visible = true;
+            btn_customerTab_Cancel.Visible = true;
+
+            //Removes editability
+            tb_customerTab_Name.Enabled = true;
+            tb_customerTab_ID.Enabled = true;
+            tb_customerTab_PrimaryAddress.Enabled = true;
+            tb_customerTab_SecondaryAddress.Enabled = true;
+            tb_customerTab_PostalCode.Enabled = true;
+            tb_customerTab_PhoneNumber.Enabled = true;
+            tb_customerTab_City.Enabled = true;
+            tb_customerTab_Country.Enabled = true;
+
+            //Clears selected customer to allow for contextual save function
+            lv_customerTab_customerNames.SelectedItems.Clear();
+            tb_customerTab_Name.Clear();
+            tb_customerTab_ID.Clear();
+            tb_customerTab_PrimaryAddress.Clear();
+            tb_customerTab_SecondaryAddress.Clear();
+            tb_customerTab_PostalCode.Clear();
+            tb_customerTab_PhoneNumber.Clear();
+            tb_customerTab_City.Clear();
+            tb_customerTab_Country.Clear();
+
+            lv_customerTab_customerNames.Items.Clear();
+            foreach (var customer in Customer.CustomerDict)
+            {
+                lv_customerTab_customerNames.Items.Add(customer.Value.CustomerName);
+            }
+        }
+
+        private void btn_customerTab_Edit_Click(object sender, EventArgs e)
         {
             if (lv_customerTab_customerNames.SelectedItems.Count > 0)
             {
-                //Passes Textbox text as parameters to the CustomerData Function which are passed as query parameters.
+                //Show/hide context specific buttons
+                btn_customerTab_New.Visible = false;
+                btn_customerTab_Edit.Visible = false;
+                btn_customerTab_Delete.Visible = false;
+                btn_customerTab_Save.Visible = true;
+                btn_customerTab_Cancel.Visible = true;
+
+                //Removes editability
+                tb_customerTab_Name.Enabled = true;
+                tb_customerTab_ID.Enabled = true;
+                tb_customerTab_PrimaryAddress.Enabled = true;
+                tb_customerTab_SecondaryAddress.Enabled = true;
+                tb_customerTab_PostalCode.Enabled = true;
+                tb_customerTab_PhoneNumber.Enabled = true;
+                tb_customerTab_City.Enabled = true;
+                tb_customerTab_Country.Enabled = true;
+            }
+            else
+            {
+                MessageBox.Show("Please select a user record to edit.");
+            }
+        }
+
+        private void btn_customerTab_Save_Click(object sender, EventArgs e)
+        {
+            //Show/hide context specific buttons
+            btn_customerTab_New.Visible = true;
+            btn_customerTab_Edit.Visible = true;
+            btn_customerTab_Delete.Visible = true;
+            btn_customerTab_Save.Visible = false;
+            btn_customerTab_Cancel.Visible = false;
+
+            //If a user is selected, update the selected user's record, otherwise, insert a new record
+            if (lv_customerTab_customerNames.SelectedItems.Count > 0)
+            {
                 Database.Query.Update.CustomerData(
                     int.Parse(tb_customerTab_ID.Text),
                     tb_customerTab_PrimaryAddress.Text,
@@ -213,6 +282,16 @@ namespace scheduler.Forms
                     tb_customerTab_PostalCode.Text,
                     tb_customerTab_PhoneNumber.Text
                 );
+
+                //Removes editability
+                tb_customerTab_Name.Enabled = false;
+                tb_customerTab_ID.Enabled = false;
+                tb_customerTab_PrimaryAddress.Enabled = false;
+                tb_customerTab_SecondaryAddress.Enabled = false;
+                tb_customerTab_PostalCode.Enabled = false;
+                tb_customerTab_PhoneNumber.Enabled = false;
+                tb_customerTab_City.Enabled = false;
+                tb_customerTab_Country.Enabled = false;
             }
             else
             {
@@ -226,14 +305,101 @@ namespace scheduler.Forms
                     tb_customerTab_PostalCode.Text,
                     tb_customerTab_PhoneNumber.Text
                 );
+
+                //Removes editability
+                tb_customerTab_Name.Enabled = false;
+                tb_customerTab_ID.Enabled = false;
+                tb_customerTab_PrimaryAddress.Enabled = false;
+                tb_customerTab_SecondaryAddress.Enabled = false;
+                tb_customerTab_PostalCode.Enabled = false;
+                tb_customerTab_PhoneNumber.Enabled = false;
+                tb_customerTab_City.Enabled = false;
+                tb_customerTab_Country.Enabled = false;
+
+                lv_customerTab_customerNames.Items.Clear();
+                foreach (var customer in Customer.CustomerDict)
+                {
+                    lv_customerTab_customerNames.Items.Add(customer.Value.CustomerName);
+                }
             }
+        }
 
-
+        private void btn_customerTab_Cancel_Click(object sender, EventArgs e)
+        {
             //Show/hide context specific buttons
-            btn_customerTab_Edit.Visible = true;
             btn_customerTab_New.Visible = true;
+            btn_customerTab_Edit.Visible = true;
+            btn_customerTab_Delete.Visible = true;
             btn_customerTab_Save.Visible = false;
             btn_customerTab_Cancel.Visible = false;
+
+            //Clears textboxes of information entered and removes editability
+            tb_customerTab_Name.Clear();
+            tb_customerTab_Name.Enabled = false;
+            tb_customerTab_ID.Clear();
+            tb_customerTab_ID.Enabled = false;
+            tb_customerTab_PrimaryAddress.Clear();
+            tb_customerTab_PrimaryAddress.Enabled = false;
+            tb_customerTab_SecondaryAddress.Clear();
+            tb_customerTab_SecondaryAddress.Enabled = false;
+            tb_customerTab_City.Clear();
+            tb_customerTab_City.Enabled = false;
+            tb_customerTab_Country.Clear();
+            tb_customerTab_Country.Enabled = false;
+            tb_customerTab_PostalCode.Clear();
+            tb_customerTab_PostalCode.Enabled = false;
+            tb_customerTab_PhoneNumber.Clear();
+            tb_customerTab_PhoneNumber.Enabled = false;
+
+            //"Remembers the selected customer and repopulates textboxes with that customer's data when cancel is clicked
+            if (lv_customerTab_customerNames.FocusedItem != null)
+            {
+                var item = lv_customerTab_customerNames.FocusedItem.Index;
+                lv_customerTab_customerNames.Select();
+                lv_customerTab_customerNames.Items[0].Selected = true;
+                lv_customerTab_customerNames.Items[0].Selected = false;
+                lv_customerTab_customerNames.Items[item].Selected = true;
+            }
+        }
+        private void btn_customerTab_Delete_Click(object sender, EventArgs e)
+        {
+            //Checks if no customer is selected, then if selected customer has any appointments.
+            //Deletion occurs if both are false
+            if (lv_customerTab_customerNames.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Please select a customer to delete.");
+                return;
+            }
+            if (dgv_customerTab_Appointments.RowCount != 0)
+            {
+                MessageBox.Show("A customer cannot be deleted with outstanding appointments.");
+                return;
+            }
+
+            Database.Query.Delete.CustomerData(int.Parse(tb_customerTab_ID.Text));
+
+            //Show/hide context specific buttons
+            btn_customerTab_New.Visible = true;
+            btn_customerTab_Edit.Visible = true;
+            btn_customerTab_Delete.Visible = true;
+            btn_customerTab_Save.Visible = false;
+            btn_customerTab_Cancel.Visible = false;
+
+            //Removes editability
+            tb_customerTab_Name.Enabled = false;
+            tb_customerTab_ID.Enabled = false;
+            tb_customerTab_PrimaryAddress.Enabled = false;
+            tb_customerTab_SecondaryAddress.Enabled = false;
+            tb_customerTab_PostalCode.Enabled = false;
+            tb_customerTab_PhoneNumber.Enabled = false;
+            tb_customerTab_City.Enabled = false;
+            tb_customerTab_Country.Enabled = false;
+
+            lv_customerTab_customerNames.Items.Clear();
+            foreach (var customer in Customer.CustomerDict)
+            {
+                lv_customerTab_customerNames.Items.Add(customer.Value.CustomerName);
+            }
         }
 
         private void dtPicker_ScheduleTab_Time_ValueChanged(object sender, EventArgs e)
@@ -295,45 +461,6 @@ namespace scheduler.Forms
                     MessageBox.Show(ex.Message);
                 }
             }
-        }
-
-        private void btn_customerTab_New_Click(object sender, EventArgs e)
-        {
-            lv_customerTab_customerNames.SelectedItems.Clear();
-
-            tb_customerTab_Name.Clear();
-            tb_customerTab_ID.Clear();
-            tb_customerTab_PrimaryAddress.Clear();
-            tb_customerTab_SecondaryAddress.Clear();
-            tb_customerTab_PostalCode.Clear();
-            tb_customerTab_PhoneNumber.Clear();
-            tb_customerTab_City.Clear();
-            tb_customerTab_Country.Clear();
-
-            //Show/hide context specific buttons
-            btn_customerTab_Edit.Visible = false;
-            btn_customerTab_New.Visible = false;
-            btn_customerTab_Save.Visible = true;
-            btn_customerTab_Cancel.Visible = true;
-
-        }
-
-        private void btn_customerTab_Edit_Click(object sender, EventArgs e)
-        {
-            //Show/hide context specific buttons
-            btn_customerTab_Edit.Visible = false;
-            btn_customerTab_New.Visible = false;
-            btn_customerTab_Save.Visible = true;
-            btn_customerTab_Cancel.Visible = true;
-        }
-
-        private void btn_customerTab_Cancel_Click(object sender, EventArgs e)
-        {
-            //Show/hide context specific buttons
-            btn_customerTab_Edit.Visible = true;
-            btn_customerTab_New.Visible = true;
-            btn_customerTab_Save.Visible = false;
-            btn_customerTab_Cancel.Visible = false;
         }
     }
 }

@@ -16,6 +16,7 @@ namespace scheduler.Database.Query
         public static bool CustomerData(string userName, string customerName, string address, string address2, string city, string country, string postalCode, string phone)
         {
             bool success = false;
+            int newCustomerId;
             string customerQuery = @"BEGIN;
                                         INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy)
                                             VALUES (@country, Now(), @userName, Now(), @userName);
@@ -25,6 +26,7 @@ namespace scheduler.Database.Query
                                             VALUES (@address, @address2, LAST_INSERT_ID(), @postalCode, @phone, Now(), @userName, Now(), @userName);
                                         INSERT INTO customer (customerName, addressId, active, createDate, createdBy, lastUpdate, lastUpdateBy)
                                             VALUES (@customerName, LAST_INSERT_ID(), @active, Now(), @userName, Now(), @userName);
+                                        SELECT * FROM customer WHERE customerId = LAST_INSERT_ID();
                                     COMMIT;";
             try
             {
@@ -56,10 +58,29 @@ namespace scheduler.Database.Query
                         command.Parameters.Add("@active", MySqlDbType.Int16).Value = 1;
 
                         conn.Open();
-                        command.ExecuteNonQuery();
+                        MySqlDataReader reader = command.ExecuteReader();
+
+                        //Populates the customer dictionary with the newly created entry rather than query the DB again
+                        while (reader.Read())
+                        {
+                            Customer.CustomerDict.Add(reader.GetInt32(0), new Customer(
+                                reader.GetInt32(0),
+                                reader.GetString(1),
+                                reader.GetInt32(2),
+                                reader.GetInt32(3)
+                            ));
+                        }
+
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.AddressOne = address;
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.AddressTwo = address2;
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.City = city;
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.Country = country;
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.PhoneNumber = phone;
+                        Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.PostalCode = postalCode;
                     }
                 }
-                return success;
+                //Assigns and returns the success result
+                return success = true;
             }
             catch (Exception ex)
             {

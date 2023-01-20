@@ -29,23 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.flpMain = new System.Windows.Forms.FlowLayoutPanel();
             this.pnl_Tabs = new System.Windows.Forms.Panel();
             this.lbl_userID = new System.Windows.Forms.Label();
             this.lbl_LoggedInUserMsg = new System.Windows.Forms.Label();
             this.pnl_WindowButtons = new System.Windows.Forms.Panel();
             this.btn_Close = new System.Windows.Forms.Button();
-            this.btn_Maximize = new System.Windows.Forms.Button();
             this.btn_Minimize = new System.Windows.Forms.Button();
+            this.btn_Maximize = new System.Windows.Forms.Button();
             this.pnl_Footer = new System.Windows.Forms.Panel();
             this.tabControl_Main = new System.Windows.Forms.TabControl();
             this.tab_Home = new System.Windows.Forms.TabPage();
             this.dgv_upcomingAppointments = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.tab_Schedule = new System.Windows.Forms.TabPage();
+            this.lv_ScheduleTab_customerNames = new System.Windows.Forms.ListView();
+            this.btn_ScheduleTab_Reset = new System.Windows.Forms.Button();
+            this.btn_ScheduleTab_Save = new System.Windows.Forms.Button();
+            this.dtPicker_ScheduleTab_EndTime = new System.Windows.Forms.DateTimePicker();
+            this.dtPicker_ScheduleTab_StartTime = new System.Windows.Forms.DateTimePicker();
+            this.cb_ScheduleTab_Type = new System.Windows.Forms.ComboBox();
+            this.tb_ScheduleTab_Contact = new System.Windows.Forms.TextBox();
+            this.dtPicker_ScheduleTab_EndDate = new System.Windows.Forms.DateTimePicker();
+            this.dtPicker_ScheduleTab_StartDate = new System.Windows.Forms.DateTimePicker();
+            this.tb_ScheduleTab_Location = new System.Windows.Forms.TextBox();
+            this.tb_ScheduleTab_Url = new System.Windows.Forms.TextBox();
+            this.tb_ScheduleTab_Description = new System.Windows.Forms.TextBox();
+            this.tb_ScheduleTab_Title = new System.Windows.Forms.TextBox();
+            this.dgv_ScheduleTab_Appointments = new System.Windows.Forms.DataGridView();
             this.tab_Customers = new System.Windows.Forms.TabPage();
+            this.btn_customerTab_New = new System.Windows.Forms.Button();
+            this.btn_customerTab_Edit = new System.Windows.Forms.Button();
             this.btn_customerTab_Cancel = new System.Windows.Forms.Button();
             this.btn_customerTab_Save = new System.Windows.Forms.Button();
             this.lbl_customerTab_secondaryAddress = new System.Windows.Forms.Label();
@@ -74,22 +90,7 @@
             this.lbl_DateLocal = new System.Windows.Forms.Label();
             this.lbl_TimeLocal = new System.Windows.Forms.Label();
             this.timer_DateTimeLabel = new System.Windows.Forms.Timer(this.components);
-            this.dgv_ScheduleTab_Appointments = new System.Windows.Forms.DataGridView();
-            this.tb_ScheduleTab_Title = new System.Windows.Forms.TextBox();
-            this.tb_ScheduleTab_Description = new System.Windows.Forms.TextBox();
-            this.tb_ScheduleTab_Url = new System.Windows.Forms.TextBox();
-            this.tb_ScheduleTab_Location = new System.Windows.Forms.TextBox();
-            this.dtPicker_ScheduleTab_StartDate = new System.Windows.Forms.DateTimePicker();
-            this.dtPicker_ScheduleTab_EndDate = new System.Windows.Forms.DateTimePicker();
-            this.tb_ScheduleTab_Contact = new System.Windows.Forms.TextBox();
-            this.cb_ScheduleTab_Type = new System.Windows.Forms.ComboBox();
-            this.dtPicker_ScheduleTab_StartTime = new System.Windows.Forms.DateTimePicker();
-            this.dtPicker_ScheduleTab_EndTime = new System.Windows.Forms.DateTimePicker();
-            this.btn_ScheduleTab_Save = new System.Windows.Forms.Button();
-            this.btn_ScheduleTab_Reset = new System.Windows.Forms.Button();
-            this.lv_ScheduleTab_customerNames = new System.Windows.Forms.ListView();
-            this.btn_customerTab_Edit = new System.Windows.Forms.Button();
-            this.btn_customerTab_New = new System.Windows.Forms.Button();
+            this.btn_customerTab_Delete = new System.Windows.Forms.Button();
             this.flpMain.SuspendLayout();
             this.pnl_Tabs.SuspendLayout();
             this.pnl_WindowButtons.SuspendLayout();
@@ -97,10 +98,10 @@
             this.tab_Home.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_upcomingAppointments)).BeginInit();
             this.tab_Schedule.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ScheduleTab_Appointments)).BeginInit();
             this.tab_Customers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_customerTab_Appointments)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ScheduleTab_Appointments)).BeginInit();
             this.SuspendLayout();
             // 
             // flpMain
@@ -178,6 +179,19 @@
             this.btn_Close.UseVisualStyleBackColor = false;
             this.btn_Close.Click += new System.EventHandler(this.btn_CloseClick);
             // 
+            // btn_Minimize
+            // 
+            this.btn_Minimize.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Minimize.ForeColor = System.Drawing.Color.Black;
+            this.btn_Minimize.Location = new System.Drawing.Point(58, 6);
+            this.btn_Minimize.Name = "btn_Minimize";
+            this.btn_Minimize.Size = new System.Drawing.Size(40, 40);
+            this.btn_Minimize.TabIndex = 0;
+            this.btn_Minimize.Text = "_";
+            this.btn_Minimize.UseVisualStyleBackColor = false;
+            this.btn_Minimize.Click += new System.EventHandler(this.btn_MinimizeClick);
+            // 
             // btn_Maximize
             // 
             this.btn_Maximize.BackColor = System.Drawing.Color.Transparent;
@@ -192,19 +206,6 @@
             this.btn_Maximize.Text = "◻";
             this.btn_Maximize.UseVisualStyleBackColor = false;
             this.btn_Maximize.Click += new System.EventHandler(this.btn_MaximizeClick);
-            // 
-            // btn_Minimize
-            // 
-            this.btn_Minimize.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Minimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Minimize.ForeColor = System.Drawing.Color.Black;
-            this.btn_Minimize.Location = new System.Drawing.Point(58, 6);
-            this.btn_Minimize.Name = "btn_Minimize";
-            this.btn_Minimize.Size = new System.Drawing.Size(40, 40);
-            this.btn_Minimize.TabIndex = 0;
-            this.btn_Minimize.Text = "_";
-            this.btn_Minimize.UseVisualStyleBackColor = false;
-            this.btn_Minimize.Click += new System.EventHandler(this.btn_MinimizeClick);
             // 
             // pnl_Footer
             // 
@@ -244,22 +245,22 @@
             // 
             // dgv_upcomingAppointments
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dgv_upcomingAppointments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgv_upcomingAppointments.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgv_upcomingAppointments.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.dgv_upcomingAppointments.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.dgv_upcomingAppointments.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgv_upcomingAppointments.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.dgv_upcomingAppointments.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgv_upcomingAppointments.ColumnHeadersHeight = 28;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(114)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgv_upcomingAppointments.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(114)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgv_upcomingAppointments.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgv_upcomingAppointments.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
             this.dgv_upcomingAppointments.Location = new System.Drawing.Point(6, 81);
             this.dgv_upcomingAppointments.Name = "dgv_upcomingAppointments";
@@ -301,9 +302,136 @@
             this.tab_Schedule.TabIndex = 1;
             this.tab_Schedule.Text = "Schedule";
             // 
+            // lv_ScheduleTab_customerNames
+            // 
+            this.lv_ScheduleTab_customerNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lv_ScheduleTab_customerNames.HideSelection = false;
+            this.lv_ScheduleTab_customerNames.Location = new System.Drawing.Point(6, 71);
+            this.lv_ScheduleTab_customerNames.Name = "lv_ScheduleTab_customerNames";
+            this.lv_ScheduleTab_customerNames.Size = new System.Drawing.Size(160, 460);
+            this.lv_ScheduleTab_customerNames.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.lv_ScheduleTab_customerNames.TabIndex = 15;
+            this.lv_ScheduleTab_customerNames.UseCompatibleStateImageBehavior = false;
+            this.lv_ScheduleTab_customerNames.SelectedIndexChanged += new System.EventHandler(this.lv_ScheduleTab_customerNames_SelectedIndexChanged);
+            // 
+            // btn_ScheduleTab_Reset
+            // 
+            this.btn_ScheduleTab_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ScheduleTab_Reset.Location = new System.Drawing.Point(428, 480);
+            this.btn_ScheduleTab_Reset.Name = "btn_ScheduleTab_Reset";
+            this.btn_ScheduleTab_Reset.Size = new System.Drawing.Size(75, 25);
+            this.btn_ScheduleTab_Reset.TabIndex = 14;
+            this.btn_ScheduleTab_Reset.Text = "Reset";
+            this.btn_ScheduleTab_Reset.UseVisualStyleBackColor = true;
+            // 
+            // btn_ScheduleTab_Save
+            // 
+            this.btn_ScheduleTab_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ScheduleTab_Save.Location = new System.Drawing.Point(268, 480);
+            this.btn_ScheduleTab_Save.Name = "btn_ScheduleTab_Save";
+            this.btn_ScheduleTab_Save.Size = new System.Drawing.Size(75, 25);
+            this.btn_ScheduleTab_Save.TabIndex = 13;
+            this.btn_ScheduleTab_Save.Text = "Save";
+            this.btn_ScheduleTab_Save.UseVisualStyleBackColor = true;
+            // 
+            // dtPicker_ScheduleTab_EndTime
+            // 
+            this.dtPicker_ScheduleTab_EndTime.CustomFormat = "HH:mm";
+            this.dtPicker_ScheduleTab_EndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_EndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPicker_ScheduleTab_EndTime.Location = new System.Drawing.Point(492, 415);
+            this.dtPicker_ScheduleTab_EndTime.Name = "dtPicker_ScheduleTab_EndTime";
+            this.dtPicker_ScheduleTab_EndTime.ShowUpDown = true;
+            this.dtPicker_ScheduleTab_EndTime.Size = new System.Drawing.Size(66, 24);
+            this.dtPicker_ScheduleTab_EndTime.TabIndex = 12;
+            this.dtPicker_ScheduleTab_EndTime.ValueChanged += new System.EventHandler(this.dtPicker_ScheduleTab_Time_ValueChanged);
+            // 
+            // dtPicker_ScheduleTab_StartTime
+            // 
+            this.dtPicker_ScheduleTab_StartTime.CustomFormat = "HH:mm";
+            this.dtPicker_ScheduleTab_StartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_StartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtPicker_ScheduleTab_StartTime.Location = new System.Drawing.Point(492, 351);
+            this.dtPicker_ScheduleTab_StartTime.Name = "dtPicker_ScheduleTab_StartTime";
+            this.dtPicker_ScheduleTab_StartTime.ShowUpDown = true;
+            this.dtPicker_ScheduleTab_StartTime.Size = new System.Drawing.Size(66, 24);
+            this.dtPicker_ScheduleTab_StartTime.TabIndex = 11;
+            this.dtPicker_ScheduleTab_StartTime.ValueChanged += new System.EventHandler(this.dtPicker_ScheduleTab_Time_ValueChanged);
+            // 
+            // cb_ScheduleTab_Type
+            // 
+            this.cb_ScheduleTab_Type.FormattingEnabled = true;
+            this.cb_ScheduleTab_Type.Location = new System.Drawing.Point(382, 183);
+            this.cb_ScheduleTab_Type.Name = "cb_ScheduleTab_Type";
+            this.cb_ScheduleTab_Type.Size = new System.Drawing.Size(121, 32);
+            this.cb_ScheduleTab_Type.TabIndex = 10;
+            // 
+            // tb_ScheduleTab_Contact
+            // 
+            this.tb_ScheduleTab_Contact.Location = new System.Drawing.Point(223, 183);
+            this.tb_ScheduleTab_Contact.Name = "tb_ScheduleTab_Contact";
+            this.tb_ScheduleTab_Contact.Size = new System.Drawing.Size(100, 29);
+            this.tb_ScheduleTab_Contact.TabIndex = 9;
+            // 
+            // dtPicker_ScheduleTab_EndDate
+            // 
+            this.dtPicker_ScheduleTab_EndDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_EndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_EndDate.Location = new System.Drawing.Point(214, 415);
+            this.dtPicker_ScheduleTab_EndDate.Name = "dtPicker_ScheduleTab_EndDate";
+            this.dtPicker_ScheduleTab_EndDate.Size = new System.Drawing.Size(257, 24);
+            this.dtPicker_ScheduleTab_EndDate.TabIndex = 8;
+            // 
+            // dtPicker_ScheduleTab_StartDate
+            // 
+            this.dtPicker_ScheduleTab_StartDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_StartDate.CustomFormat = "";
+            this.dtPicker_ScheduleTab_StartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtPicker_ScheduleTab_StartDate.Location = new System.Drawing.Point(214, 351);
+            this.dtPicker_ScheduleTab_StartDate.Name = "dtPicker_ScheduleTab_StartDate";
+            this.dtPicker_ScheduleTab_StartDate.Size = new System.Drawing.Size(257, 24);
+            this.dtPicker_ScheduleTab_StartDate.TabIndex = 7;
+            // 
+            // tb_ScheduleTab_Location
+            // 
+            this.tb_ScheduleTab_Location.Location = new System.Drawing.Point(458, 71);
+            this.tb_ScheduleTab_Location.Name = "tb_ScheduleTab_Location";
+            this.tb_ScheduleTab_Location.Size = new System.Drawing.Size(100, 29);
+            this.tb_ScheduleTab_Location.TabIndex = 6;
+            // 
+            // tb_ScheduleTab_Url
+            // 
+            this.tb_ScheduleTab_Url.Location = new System.Drawing.Point(202, 235);
+            this.tb_ScheduleTab_Url.Name = "tb_ScheduleTab_Url";
+            this.tb_ScheduleTab_Url.Size = new System.Drawing.Size(366, 29);
+            this.tb_ScheduleTab_Url.TabIndex = 5;
+            // 
+            // tb_ScheduleTab_Description
+            // 
+            this.tb_ScheduleTab_Description.Location = new System.Drawing.Point(202, 148);
+            this.tb_ScheduleTab_Description.Name = "tb_ScheduleTab_Description";
+            this.tb_ScheduleTab_Description.Size = new System.Drawing.Size(366, 29);
+            this.tb_ScheduleTab_Description.TabIndex = 3;
+            // 
+            // tb_ScheduleTab_Title
+            // 
+            this.tb_ScheduleTab_Title.Location = new System.Drawing.Point(202, 71);
+            this.tb_ScheduleTab_Title.Name = "tb_ScheduleTab_Title";
+            this.tb_ScheduleTab_Title.Size = new System.Drawing.Size(185, 29);
+            this.tb_ScheduleTab_Title.TabIndex = 2;
+            // 
+            // dgv_ScheduleTab_Appointments
+            // 
+            this.dgv_ScheduleTab_Appointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ScheduleTab_Appointments.Location = new System.Drawing.Point(609, 71);
+            this.dgv_ScheduleTab_Appointments.Name = "dgv_ScheduleTab_Appointments";
+            this.dgv_ScheduleTab_Appointments.Size = new System.Drawing.Size(769, 460);
+            this.dgv_ScheduleTab_Appointments.TabIndex = 1;
+            // 
             // tab_Customers
             // 
             this.tab_Customers.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(245)))), ((int)(((byte)(245)))));
+            this.tab_Customers.Controls.Add(this.btn_customerTab_Delete);
             this.tab_Customers.Controls.Add(this.btn_customerTab_New);
             this.tab_Customers.Controls.Add(this.btn_customerTab_Edit);
             this.tab_Customers.Controls.Add(this.btn_customerTab_Cancel);
@@ -335,6 +463,28 @@
             this.tab_Customers.Size = new System.Drawing.Size(1381, 537);
             this.tab_Customers.TabIndex = 3;
             this.tab_Customers.Text = "Customers";
+            // 
+            // btn_customerTab_New
+            // 
+            this.btn_customerTab_New.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_customerTab_New.Location = new System.Drawing.Point(206, 473);
+            this.btn_customerTab_New.Name = "btn_customerTab_New";
+            this.btn_customerTab_New.Size = new System.Drawing.Size(75, 30);
+            this.btn_customerTab_New.TabIndex = 24;
+            this.btn_customerTab_New.Text = "New";
+            this.btn_customerTab_New.UseVisualStyleBackColor = true;
+            this.btn_customerTab_New.Click += new System.EventHandler(this.btn_customerTab_New_Click);
+            // 
+            // btn_customerTab_Edit
+            // 
+            this.btn_customerTab_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_customerTab_Edit.Location = new System.Drawing.Point(321, 473);
+            this.btn_customerTab_Edit.Name = "btn_customerTab_Edit";
+            this.btn_customerTab_Edit.Size = new System.Drawing.Size(75, 30);
+            this.btn_customerTab_Edit.TabIndex = 23;
+            this.btn_customerTab_Edit.Text = "Edit";
+            this.btn_customerTab_Edit.UseVisualStyleBackColor = true;
+            this.btn_customerTab_Edit.Click += new System.EventHandler(this.btn_customerTab_Edit_Click);
             // 
             // btn_customerTab_Cancel
             // 
@@ -372,6 +522,7 @@
             // 
             // tb_customerTab_SecondaryAddress
             // 
+            this.tb_customerTab_SecondaryAddress.Enabled = false;
             this.tb_customerTab_SecondaryAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_SecondaryAddress.Location = new System.Drawing.Point(208, 253);
             this.tb_customerTab_SecondaryAddress.Name = "tb_customerTab_SecondaryAddress";
@@ -460,6 +611,7 @@
             // 
             // tb_customerTab_Country
             // 
+            this.tb_customerTab_Country.Enabled = false;
             this.tb_customerTab_Country.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_Country.Location = new System.Drawing.Point(361, 406);
             this.tb_customerTab_Country.Name = "tb_customerTab_Country";
@@ -468,6 +620,7 @@
             // 
             // tb_customerTab_City
             // 
+            this.tb_customerTab_City.Enabled = false;
             this.tb_customerTab_City.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_City.Location = new System.Drawing.Point(206, 406);
             this.tb_customerTab_City.Name = "tb_customerTab_City";
@@ -476,6 +629,7 @@
             // 
             // tb_customerTab_PhoneNumber
             // 
+            this.tb_customerTab_PhoneNumber.Enabled = false;
             this.tb_customerTab_PhoneNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_PhoneNumber.Location = new System.Drawing.Point(361, 328);
             this.tb_customerTab_PhoneNumber.Name = "tb_customerTab_PhoneNumber";
@@ -484,6 +638,7 @@
             // 
             // tb_customerTab_PostalCode
             // 
+            this.tb_customerTab_PostalCode.Enabled = false;
             this.tb_customerTab_PostalCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_PostalCode.Location = new System.Drawing.Point(206, 328);
             this.tb_customerTab_PostalCode.Name = "tb_customerTab_PostalCode";
@@ -492,6 +647,7 @@
             // 
             // tb_customerTab_PrimaryAddress
             // 
+            this.tb_customerTab_PrimaryAddress.Enabled = false;
             this.tb_customerTab_PrimaryAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_PrimaryAddress.Location = new System.Drawing.Point(208, 184);
             this.tb_customerTab_PrimaryAddress.Name = "tb_customerTab_PrimaryAddress";
@@ -500,6 +656,7 @@
             // 
             // tb_customerTab_Name
             // 
+            this.tb_customerTab_Name.Enabled = false;
             this.tb_customerTab_Name.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tb_customerTab_Name.Location = new System.Drawing.Point(208, 111);
             this.tb_customerTab_Name.Name = "tb_customerTab_Name";
@@ -605,153 +762,16 @@
             this.timer_DateTimeLabel.Interval = 500;
             this.timer_DateTimeLabel.Tick += new System.EventHandler(this.timer_DateTimeLabel_Tick);
             // 
-            // dgv_ScheduleTab_Appointments
+            // btn_customerTab_Delete
             // 
-            this.dgv_ScheduleTab_Appointments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ScheduleTab_Appointments.Location = new System.Drawing.Point(609, 71);
-            this.dgv_ScheduleTab_Appointments.Name = "dgv_ScheduleTab_Appointments";
-            this.dgv_ScheduleTab_Appointments.Size = new System.Drawing.Size(769, 460);
-            this.dgv_ScheduleTab_Appointments.TabIndex = 1;
-            // 
-            // tb_ScheduleTab_Title
-            // 
-            this.tb_ScheduleTab_Title.Location = new System.Drawing.Point(202, 71);
-            this.tb_ScheduleTab_Title.Name = "tb_ScheduleTab_Title";
-            this.tb_ScheduleTab_Title.Size = new System.Drawing.Size(185, 29);
-            this.tb_ScheduleTab_Title.TabIndex = 2;
-            // 
-            // tb_ScheduleTab_Description
-            // 
-            this.tb_ScheduleTab_Description.Location = new System.Drawing.Point(202, 148);
-            this.tb_ScheduleTab_Description.Name = "tb_ScheduleTab_Description";
-            this.tb_ScheduleTab_Description.Size = new System.Drawing.Size(366, 29);
-            this.tb_ScheduleTab_Description.TabIndex = 3;
-            // 
-            // tb_ScheduleTab_Url
-            // 
-            this.tb_ScheduleTab_Url.Location = new System.Drawing.Point(202, 235);
-            this.tb_ScheduleTab_Url.Name = "tb_ScheduleTab_Url";
-            this.tb_ScheduleTab_Url.Size = new System.Drawing.Size(366, 29);
-            this.tb_ScheduleTab_Url.TabIndex = 5;
-            // 
-            // tb_ScheduleTab_Location
-            // 
-            this.tb_ScheduleTab_Location.Location = new System.Drawing.Point(458, 71);
-            this.tb_ScheduleTab_Location.Name = "tb_ScheduleTab_Location";
-            this.tb_ScheduleTab_Location.Size = new System.Drawing.Size(100, 29);
-            this.tb_ScheduleTab_Location.TabIndex = 6;
-            // 
-            // dtPicker_ScheduleTab_StartDate
-            // 
-            this.dtPicker_ScheduleTab_StartDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_StartDate.CustomFormat = "";
-            this.dtPicker_ScheduleTab_StartDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_StartDate.Location = new System.Drawing.Point(214, 351);
-            this.dtPicker_ScheduleTab_StartDate.Name = "dtPicker_ScheduleTab_StartDate";
-            this.dtPicker_ScheduleTab_StartDate.Size = new System.Drawing.Size(257, 24);
-            this.dtPicker_ScheduleTab_StartDate.TabIndex = 7;
-            // 
-            // dtPicker_ScheduleTab_EndDate
-            // 
-            this.dtPicker_ScheduleTab_EndDate.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_EndDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_EndDate.Location = new System.Drawing.Point(214, 415);
-            this.dtPicker_ScheduleTab_EndDate.Name = "dtPicker_ScheduleTab_EndDate";
-            this.dtPicker_ScheduleTab_EndDate.Size = new System.Drawing.Size(257, 24);
-            this.dtPicker_ScheduleTab_EndDate.TabIndex = 8;
-            // 
-            // tb_ScheduleTab_Contact
-            // 
-            this.tb_ScheduleTab_Contact.Location = new System.Drawing.Point(223, 183);
-            this.tb_ScheduleTab_Contact.Name = "tb_ScheduleTab_Contact";
-            this.tb_ScheduleTab_Contact.Size = new System.Drawing.Size(100, 29);
-            this.tb_ScheduleTab_Contact.TabIndex = 9;
-            // 
-            // cb_ScheduleTab_Type
-            // 
-            this.cb_ScheduleTab_Type.FormattingEnabled = true;
-            this.cb_ScheduleTab_Type.Location = new System.Drawing.Point(382, 183);
-            this.cb_ScheduleTab_Type.Name = "cb_ScheduleTab_Type";
-            this.cb_ScheduleTab_Type.Size = new System.Drawing.Size(121, 32);
-            this.cb_ScheduleTab_Type.TabIndex = 10;
-            // 
-            // dtPicker_ScheduleTab_StartTime
-            // 
-            this.dtPicker_ScheduleTab_StartTime.CustomFormat = "HH:mm";
-            this.dtPicker_ScheduleTab_StartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_StartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPicker_ScheduleTab_StartTime.Location = new System.Drawing.Point(492, 351);
-            this.dtPicker_ScheduleTab_StartTime.Name = "dtPicker_ScheduleTab_StartTime";
-            this.dtPicker_ScheduleTab_StartTime.ShowUpDown = true;
-            this.dtPicker_ScheduleTab_StartTime.Size = new System.Drawing.Size(66, 24);
-            this.dtPicker_ScheduleTab_StartTime.TabIndex = 11;
-            this.dtPicker_ScheduleTab_StartTime.ValueChanged += new System.EventHandler(this.dtPicker_ScheduleTab_Time_ValueChanged);
-            // 
-            // dtPicker_ScheduleTab_EndTime
-            // 
-            this.dtPicker_ScheduleTab_EndTime.CustomFormat = "HH:mm";
-            this.dtPicker_ScheduleTab_EndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtPicker_ScheduleTab_EndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPicker_ScheduleTab_EndTime.Location = new System.Drawing.Point(492, 415);
-            this.dtPicker_ScheduleTab_EndTime.Name = "dtPicker_ScheduleTab_EndTime";
-            this.dtPicker_ScheduleTab_EndTime.ShowUpDown = true;
-            this.dtPicker_ScheduleTab_EndTime.Size = new System.Drawing.Size(66, 24);
-            this.dtPicker_ScheduleTab_EndTime.TabIndex = 12;
-            this.dtPicker_ScheduleTab_EndTime.ValueChanged += new System.EventHandler(this.dtPicker_ScheduleTab_Time_ValueChanged);
-            // 
-            // btn_ScheduleTab_Save
-            // 
-            this.btn_ScheduleTab_Save.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ScheduleTab_Save.Location = new System.Drawing.Point(268, 480);
-            this.btn_ScheduleTab_Save.Name = "btn_ScheduleTab_Save";
-            this.btn_ScheduleTab_Save.Size = new System.Drawing.Size(75, 25);
-            this.btn_ScheduleTab_Save.TabIndex = 13;
-            this.btn_ScheduleTab_Save.Text = "Save";
-            this.btn_ScheduleTab_Save.UseVisualStyleBackColor = true;
-            // 
-            // btn_ScheduleTab_Reset
-            // 
-            this.btn_ScheduleTab_Reset.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ScheduleTab_Reset.Location = new System.Drawing.Point(428, 480);
-            this.btn_ScheduleTab_Reset.Name = "btn_ScheduleTab_Reset";
-            this.btn_ScheduleTab_Reset.Size = new System.Drawing.Size(75, 25);
-            this.btn_ScheduleTab_Reset.TabIndex = 14;
-            this.btn_ScheduleTab_Reset.Text = "Reset";
-            this.btn_ScheduleTab_Reset.UseVisualStyleBackColor = true;
-            // 
-            // lv_ScheduleTab_customerNames
-            // 
-            this.lv_ScheduleTab_customerNames.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lv_ScheduleTab_customerNames.HideSelection = false;
-            this.lv_ScheduleTab_customerNames.Location = new System.Drawing.Point(6, 71);
-            this.lv_ScheduleTab_customerNames.Name = "lv_ScheduleTab_customerNames";
-            this.lv_ScheduleTab_customerNames.Size = new System.Drawing.Size(160, 460);
-            this.lv_ScheduleTab_customerNames.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.lv_ScheduleTab_customerNames.TabIndex = 15;
-            this.lv_ScheduleTab_customerNames.UseCompatibleStateImageBehavior = false;
-            this.lv_ScheduleTab_customerNames.SelectedIndexChanged += new System.EventHandler(this.lv_ScheduleTab_customerNames_SelectedIndexChanged);
-            // 
-            // btn_customerTab_Edit
-            // 
-            this.btn_customerTab_Edit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_customerTab_Edit.Location = new System.Drawing.Point(433, 473);
-            this.btn_customerTab_Edit.Name = "btn_customerTab_Edit";
-            this.btn_customerTab_Edit.Size = new System.Drawing.Size(75, 30);
-            this.btn_customerTab_Edit.TabIndex = 23;
-            this.btn_customerTab_Edit.Text = "Edit";
-            this.btn_customerTab_Edit.UseVisualStyleBackColor = true;
-            this.btn_customerTab_Edit.Click += new System.EventHandler(this.btn_customerTab_Edit_Click);
-            // 
-            // btn_customerTab_New
-            // 
-            this.btn_customerTab_New.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_customerTab_New.Location = new System.Drawing.Point(206, 473);
-            this.btn_customerTab_New.Name = "btn_customerTab_New";
-            this.btn_customerTab_New.Size = new System.Drawing.Size(75, 30);
-            this.btn_customerTab_New.TabIndex = 24;
-            this.btn_customerTab_New.Text = "New";
-            this.btn_customerTab_New.UseVisualStyleBackColor = true;
-            this.btn_customerTab_New.Click += new System.EventHandler(this.btn_customerTab_New_Click);
+            this.btn_customerTab_Delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_customerTab_Delete.Location = new System.Drawing.Point(433, 474);
+            this.btn_customerTab_Delete.Name = "btn_customerTab_Delete";
+            this.btn_customerTab_Delete.Size = new System.Drawing.Size(75, 30);
+            this.btn_customerTab_Delete.TabIndex = 25;
+            this.btn_customerTab_Delete.Text = "Delete";
+            this.btn_customerTab_Delete.UseVisualStyleBackColor = true;
+            this.btn_customerTab_Delete.Click += new System.EventHandler(this.btn_customerTab_Delete_Click);
             // 
             // Main
             // 
@@ -778,11 +798,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgv_upcomingAppointments)).EndInit();
             this.tab_Schedule.ResumeLayout(false);
             this.tab_Schedule.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ScheduleTab_Appointments)).EndInit();
             this.tab_Customers.ResumeLayout(false);
             this.tab_Customers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_customerTab_Appointments)).EndInit();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ScheduleTab_Appointments)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -848,5 +868,6 @@
         private System.Windows.Forms.Button btn_ScheduleTab_Save;
         private System.Windows.Forms.Button btn_customerTab_New;
         private System.Windows.Forms.Button btn_customerTab_Edit;
+        private System.Windows.Forms.Button btn_customerTab_Delete;
     }
 }

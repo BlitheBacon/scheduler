@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\Authentication\Login.cs" />
+    <Compile Include="Database\Query\Delete.cs" />
     <Compile Include="Database\Query\Insert.cs" />
     <Compile Include="Database\Query\Select.cs" />
     <Compile Include="Database\Query\Update.cs" />
