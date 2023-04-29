@@ -33,7 +33,7 @@ namespace scheduler.Database.Authentication
                     command.Parameters.Add("@password", MySqlDbType.VarChar).Value = password;
 
                     //Sets the time stamp for log files
-                    DateTime queryTimestamp = DateTime.UtcNow;
+                    DateTime queryTimestamp = DateTime.UtcNow.ToLocalTime();
 
                     //Query data checks for a match and stores the result
                     MySqlDataReader reader = command.ExecuteReader();

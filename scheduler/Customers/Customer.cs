@@ -1,10 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace scheduler.Customers
 {
@@ -12,47 +8,27 @@ namespace scheduler.Customers
     {
         public static Dictionary<int, Customer> CustomerDict = new Dictionary<int, Customer>();
         public static BindingList<Appointment> Appointments = new BindingList<Appointment>();
+        public static List<string> Countries = new List<string>();
+
 
         public Customer() { }
-        public Customer(int customerId, string customerName, int? addressId, int? appointmentId)
+        public Customer(int customerId, string customerName, int? addressId)
         {
-            this.CustomerId    = customerId;
-            this.CustomerName  = customerName;
-            this.AddressId     = addressId;
-            this.AppointmentId = appointmentId;
+            CustomerId    = customerId;
+            CustomerName  = customerName;
+            AddressId     = addressId;
         }
-        ~Customer() { }
-
-        private int _customerId;
-        private string _customerName = "";
-        private int? _addressId;
-        private int? _appointmentId;
-
 
         public Address PrimaryAddress = new Address();
         public Address SecondaryAddress;
 
-        public int CustomerId 
-        { 
-            get => _customerId; 
-            set => _customerId = value; 
-        }
-        public string CustomerName 
-        { 
-            get => _customerName; 
-            set => _customerName = value; 
-        }
-        public int? AddressId 
-        {
-            get => _addressId; 
-            set => _addressId = value; 
-        }
-        public int? AppointmentId 
-        { 
-            get => _appointmentId; 
-            set => _appointmentId = value; 
-        }
+        public int CustomerId { get; set; }
 
+        public string CustomerName { get; set; } = "";
+
+        public int? AddressId { get; set; }
+
+        //Lookup functions for customers - Overloaded to allow lookup via key or value
         public static Customer CustomerLookup(string customerToLookup)
         {
             foreach (var customer in CustomerDict.Values) 
@@ -76,14 +52,46 @@ namespace scheduler.Customers
             return null;
         }
 
+        //Fills appointments relevant to current customer
         public static BindingList<Appointment> FillAppointments(int customerID)
         {
-            BindingList<Appointment> temp = new BindingList<Appointment>();
             foreach (var appointment in Appointment.AllAppointments)
             {
-                if (appointment.CustomerId == customerID) { temp.Add(appointment); }
+                if (appointment.CustomerId == customerID)
+                {
+                    Appointments.Add(appointment);
+                }
             }
-            return temp;
+            return Appointments;
+        }
+
+        public static void FillCountries()
+        {
+            var distinctCountries = CustomerDict.Values.Select(x => x.PrimaryAddress.Country).Distinct();
+
+            foreach (var c in distinctCountries)
+            {
+                Countries.Add(c);
+            }
+        }
+
+        //Lookup function for appointments
+        public static Appointment AppointmentLookup(int appointmentID)
+        {
+            foreach (var appointment in Appointments)
+            {
+                if (appointmentID == appointment.AppointmentId)
+                {
+                    return appointment;
+                }
+            }
+            return null;
+        }
+
+        //Clears customer related appointments
+        public static void ClearAppointment()
+        {
+            Appointments.Clear();
         }
     }
 }

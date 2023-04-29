@@ -1,10 +1,6 @@
 ﻿using MySql.Data.MySqlClient;
 using scheduler.Customers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using scheduler.User;
 
@@ -16,7 +12,6 @@ namespace scheduler.Database.Query
         public static bool CustomerData(string userName, string customerName, string address, string address2, string city, string country, string postalCode, string phone)
         {
             bool success = false;
-            int newCustomerId;
             string customerQuery = @"BEGIN;
                                         INSERT INTO country (country, createDate, createdBy, lastUpdate, lastUpdateBy)
                                             VALUES (@country, Now(), @userName, Now(), @userName);
@@ -60,14 +55,13 @@ namespace scheduler.Database.Query
                         conn.Open();
                         MySqlDataReader reader = command.ExecuteReader();
 
-                        //Populates the customer dictionary with the newly created entry rather than query the DB again
+                        //Populates the customer dictionary with the newly created entry
                         while (reader.Read())
                         {
                             Customer.CustomerDict.Add(reader.GetInt32(0), new Customer(
                                 reader.GetInt32(0),
                                 reader.GetString(1),
-                                reader.GetInt32(2),
-                                reader.GetInt32(3)
+                                reader.GetInt32(2)
                             ));
                         }
 
@@ -77,6 +71,46 @@ namespace scheduler.Database.Query
                         Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.Country = country;
                         Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.PhoneNumber = phone;
                         Customer.CustomerDict[reader.GetInt32(0)].PrimaryAddress.PostalCode = postalCode;
+                    }
+                }
+                //Assigns and returns the success result
+                Customer.FillCountries();
+                return success = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to update address data due to an exception.\n{ex.GetType()}: {ex.Message}\n");
+                success = false;
+            }
+            return success;
+        }
+        //Queries the DB for customer datasets: Customer and Address
+        public static bool AppointmentData(int customerID, string title, string location, string description, string contact, string type, string url, DateTime startDate, DateTime startTime, DateTime endDate, DateTime endTime)
+        {
+            bool success = false;
+            string appointmentQuery = @"INSERT INTO appointment (customerId, userId, title, location, description, contact, type, url, start, end, createDate, createdBy, lastUpdate, lastUpdateBy)
+                                            VALUES (@customerId, @userId, @title, @location, @description, @contact, @type, @url, @start, @end, NOW(), @activeUser, NOW(), @activeUser);";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(DbConnection.ConnStr))
+                {
+                    using (MySqlCommand command = new MySqlCommand(appointmentQuery, conn))
+                    {
+                        //Creation/Update Name and DateTime
+                        command.Parameters.Add("@userId", MySqlDbType.VarChar).Value = ActiveUser.UserInformation.UserId;
+                        command.Parameters.Add("@activeUser", MySqlDbType.VarChar).Value = ActiveUser.UserInformation.UserName;
+                        command.Parameters.Add("@customerId", MySqlDbType.UInt32).Value = Customer.CustomerLookup(customerID).AddressId;
+                        command.Parameters.Add("@title", MySqlDbType.VarChar).Value = title;
+                        command.Parameters.Add("@location", MySqlDbType.VarChar).Value = location;
+                        command.Parameters.Add("@description", MySqlDbType.VarChar).Value = description;
+                        command.Parameters.Add("@contact", MySqlDbType.VarChar).Value = contact;
+                        command.Parameters.Add("@type", MySqlDbType.VarChar).Value = type;
+                        command.Parameters.Add("@url", MySqlDbType.VarChar).Value = url;
+                        command.Parameters.Add("@start", MySqlDbType.DateTime).Value = startDate.Date.Add(startTime.ToUniversalTime().TimeOfDay);
+                        command.Parameters.Add("@end", MySqlDbType.DateTime).Value = endDate.Date.Add(endTime.ToUniversalTime().TimeOfDay);
+
+                        conn.Open();
+                        command.ExecuteNonQuery();
                     }
                 }
                 //Assigns and returns the success result

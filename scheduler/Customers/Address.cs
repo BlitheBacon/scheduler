@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace scheduler.Customers
+﻿namespace scheduler.Customers
 {
     internal class Address
     {
@@ -18,16 +16,6 @@ namespace scheduler.Customers
             City        = city;
             Country     = country;
         }
-
-        private static int? _addressId     = null;
-        private static int? _cityId        = null;
-        private static int? _countryId     = null;
-        private static string _addressOne  = null;
-        private static string _addressTwo  = null;
-        private static string _postalCode  = null;
-        private static string _phoneNumber = null;
-        private static string _city        = null;
-        private static string _country     = null;
 
         public int AddressId { get; set; }
         public int CityId { get; set; }

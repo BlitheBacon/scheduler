@@ -13,18 +13,13 @@ namespace scheduler.Database.Query
         {
             bool success = false;
             string customerQuery =
-                @"SELECT c.customerId, c.customerName, ad.addressId, ap.appointmentId
+                @"SELECT c.customerId, c.customerName, ad.addressId
                   FROM customer as c
                   LEFT JOIN (
 	                  SELECT addressId
                       FROM address
-                      ) AS ad
+                  ) AS ad
                   ON c.addressId = ad.addressId
-                  LEFT JOIN (
-	                  SELECT appointmentId, customerId
-                      FROM appointment
-                      ) AS ap
-                  ON c.customerId = ap.customerId
                   ORDER BY customerId ASC;";
             try
             {
@@ -35,15 +30,13 @@ namespace scheduler.Database.Query
                         conn.Open();
                         MySqlDataReader reader = command.ExecuteReader();
 
-
                         while (reader.Read())
                         {
                             Customer.CustomerDict.Add((int)reader.GetUInt32(0), new Customer(
                                 (int)reader.GetUInt32(0),                                      //| column: customerId    | var: customerID
                                      reader.GetString(1),                                      //| column: customerName  | var: customerName
                                      //Null handling
-                                     reader.IsDBNull(2) ? null : (int?)reader.GetUInt32(2),    //| column: addressId     | var: addressID 
-                                     reader.IsDBNull(3) ? null : (int?)reader.GetUInt32(3)));  //| column: appointmentId | var: appointmentID
+                                     reader.IsDBNull(2) ? null : (int?)reader.GetUInt32(2)));  //| column: addressId     | var: addressID 
                         }
                     }
                 }
@@ -51,7 +44,39 @@ namespace scheduler.Database.Query
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to import customer data due to an exception.\n{ex.GetType().ToString()}: {ex.Message}");
+                MessageBox.Show($"Failed to import customer data due to an exception.\n{ex.GetType()}: {ex.Message}\n{ex.Source}");
+                success = false;
+            }
+            return success;
+        }
+        public static bool CountryData()
+        {
+            bool success = false;
+            string countryQuery =
+                @"SELECT country
+                  FROM Country
+                  GROUP BY country
+                  ORDER BY country ASC;";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(DbConnection.ConnStr))
+                {
+                    using (MySqlCommand command = new MySqlCommand(countryQuery, conn))
+                    {
+                        conn.Open();
+                        MySqlDataReader reader = command.ExecuteReader();
+
+                        while (reader.Read())
+                        {
+                            Customer.Countries.Add(reader.GetString(0));
+                        }
+                    }
+                }
+                return success;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Failed to import country data due to an exception.\n{ex.GetType()}: {ex.Message}\n{ex.Source}");
                 success = false;
             }
             return success;
@@ -67,7 +92,7 @@ namespace scheduler.Database.Query
                                         FROM customer as c 
                                         LEFT JOIN ( 
                                             SELECT userId, customerId, appointmentID, title, description, location, 
-                                                    contact, type, url, start, end, createdBy, createDate, lastUpdate, lastUpdateBy 
+                                                   contact, type, url, start, end, createdBy, createDate, lastUpdate, lastUpdateBy 
                                             FROM appointment 
                                         ) AS a 
                                         ON c.customerId = a.customerId 
@@ -77,7 +102,7 @@ namespace scheduler.Database.Query
                                         ) AS u 
                                         ON a.userId = u.userId 
                                         WHERE u.userId = @userID 
-                                        ORDER BY c.customerId ASC;";
+                                        ORDER BY a.start ASC;";
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(DbConnection.ConnStr))
@@ -85,6 +110,8 @@ namespace scheduler.Database.Query
                     using (MySqlCommand command = new MySqlCommand(appointmentQuery, conn))
                     {
                         command.Parameters.Add("@userID", MySqlDbType.UInt32).Value = userId;
+
+                        if (Appointment.AllAppointments.Count != 0) Appointment.AllAppointments.Clear();
 
                         conn.Open();
                         MySqlDataReader reader = command.ExecuteReader();
@@ -103,11 +130,11 @@ namespace scheduler.Database.Query
                                     reader.GetString(7),       //| Column: contact        | Var: Contact
                                     reader.GetString(8),       //| Column: type           | Var: Type
                                     reader.GetString(9),       //| Column: url            | Var: URL
-                                    reader.GetDateTime(10),    //| Column: start          | Var: Start
-                                    reader.GetDateTime(11),    //| Column: end            | Var: End
-                                    reader.GetDateTime(13),    //| Column: createdBy      | Var: CreatedBy
+                                    reader.GetDateTime(10).ToLocalTime(),    //| Column: start          | Var: Start
+                                    reader.GetDateTime(11).ToLocalTime(),    //| Column: end            | Var: End
+                                    reader.GetDateTime(13).ToLocalTime(),    //| Column: createdBy      | Var: CreatedBy
                                     reader.GetString(12),      //| Column: createDate     | Var: CreatedDate
-                                    reader.GetDateTime(14),    //| Column: lastUpdate     | Var: LastUpdate
+                                    reader.GetDateTime(14).ToLocalTime(),    //| Column: lastUpdate     | Var: LastUpdate
                                     reader.GetString(15)));    //| Column: lastUpdateBy   | Var: LastUpdateBy
                             }
                         }
@@ -117,7 +144,7 @@ namespace scheduler.Database.Query
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Failed to import appointment data due to an exception.\n{ex.GetType().ToString()}: {ex.Message}\n");
+                MessageBox.Show($"Failed to import appointment data due to an exception.\n{ex.GetType()}: {ex.Message}\n");
                 success = false;
             }
             return success;

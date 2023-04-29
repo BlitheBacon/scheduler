@@ -1,9 +1,4 @@
 ﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using scheduler.Customers;
 
@@ -36,6 +31,37 @@ namespace scheduler.Database.Query
                 }
                 //Removes the customer from the dictionary rather than another query to the DB
                 Customer.CustomerDict.Remove(customerId);
+
+                //Sets then returns the success status
+                success = true;
+                return success;
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"A customer cannot be deleted while having scheduled appointments.");
+                success = false;
+            }
+            return success;
+        }
+        //Queries the DB for customer datasets: Customer and Address
+        public static bool AppointmentData(int appointmentId)
+        {
+            bool success = false;
+            string customerQuery = @"DELETE appointment from appointment
+                                    WHERE appointmentId = @appointmentId;";
+            try
+            {
+                using (MySqlConnection conn = new MySqlConnection(DbConnection.ConnStr))
+                {
+                    using (MySqlCommand command = new MySqlCommand(customerQuery, conn))
+                    {
+                        //Creation/Update Name and DateTime
+                        command.Parameters.Add("@appointmentId", MySqlDbType.VarChar).Value = appointmentId;
+
+                        conn.Open();
+                        command.ExecuteNonQuery();
+                    }
+                }
 
                 //Sets then returns the success status
                 success = true;

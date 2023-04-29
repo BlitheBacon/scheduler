@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
 namespace scheduler.Logging
 {
     public class Log
     {
         //Fields
-        private readonly static DateTime CurrentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-        private readonly static string FileName = $"{CurrentDate.ToString("M-yyyy")}.txt";
-        private readonly static string Path = $"Logs\\{FileName}";
+        private static readonly DateTime CurrentDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+        private static readonly string FileName = $"{CurrentDate.ToString("M-yyyy")}.txt";
+        private static readonly string Path = $"Logs\\{FileName}";
 
         //Functions
         private static bool NewLogCheck()
@@ -23,9 +18,9 @@ namespace scheduler.Logging
              * a new log file is created.
             */
 
-            var directory = new DirectoryInfo("Logs");  //Log directory assigned
-            FileInfo myFile;                            //File system information
-            DateTime latestLog = new DateTime();        //DateTime variable for currentDate comparison
+            var directory = new DirectoryInfo("Logs");         //Log directory assigned
+            FileInfo myFile;                                   //File system information
+            DateTime latestLog = new DateTime().ToLocalTime(); //DateTime variable for currentDate comparison
 
             //Searches the /Logs/ directory, discarding the thrown exception if empty
             try
@@ -34,7 +29,7 @@ namespace scheduler.Logging
                     .OrderByDescending(f => f.LastWriteTime)
                     .First();
             }
-            catch (InvalidOperationException invalidOpEx)
+            catch (InvalidOperationException exception)
             {
                 myFile = null;
             }
